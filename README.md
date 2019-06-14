@@ -8,7 +8,7 @@ Helpers for PostgreSQL/PostGIS (schema discovery, psql, pg_dump,...)
 
 Connection to the database relies on PostgreSQL environment variables (PGHOST, PGDATABASE, etc.)
 
-## Feature
+## Features
 
 ### Create and release connections
 
