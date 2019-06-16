@@ -1,9 +1,11 @@
 const debug = require('debug')('postgis-helper');
 
 const { Client } = require('pg');
-const pool = require('./pool');
 
+const pool = require('./internal/pool');
 const psql = require('./internal/psql');
+
+const Catalog = require('./Catalog');
 
 /**
  * Helper to query database
@@ -20,6 +22,11 @@ class Database {
          * @property {Client}
          */
         this.client = client;
+        /**
+         * @property {Catalog}
+         * @private
+         */
+        this.catalog = new Catalog(this);
     }
 
     /**
@@ -34,6 +41,14 @@ class Database {
     }
 
     /**
+     * Close database connexion
+     */
+    async close(){
+        debug('Database - release pg connection...');
+        await this.client.release();
+    }
+
+    /**
      * @returns {Client}
      */
     getClient(){
@@ -41,11 +56,10 @@ class Database {
     }
 
     /**
-     * Close database connexion
+     * @returns {Catalog}
      */
-    async close(){
-        debug('Database - release pg connection...');
-        await this.client.release();
+    getCatalog(){
+        return this.catalog;
     }
 
     /**
@@ -65,27 +79,24 @@ class Database {
      * @returns {boolean}
      */
     async hasSchema(schemaName){
-        let schemas = await this.getSchemaNames();
-        return schemas.indexOf(schemaName) >= 0;
+        return this.catalog.hasSchema(schemaName);
     }
 
     /**
      * List schemas
+     * @returns {string[]}
      */
     async getSchemaNames() {
-        const sql = `select schema_name from information_schema.schemata WHERE schema_name NOT LIKE 'pg_%' AND schema_name != 'information_schema'`;
-        const rows = await this.query(sql);
-        return rows.map(function (row) { return row.schema_name });
+        return this.catalog.getSchemaNames();
     }
 
     /**
      * List table in a given schema
-     * @param {String} schemaName
+     * @param {string} schemaName
+     * @returns {string[]}
      */
     async getTableNames(schemaName) {
-        const sql = `SELECT * FROM pg_catalog.pg_tables WHERE schemaname = $1`;
-        const rows = await this.query(sql, [schemaName]);
-        return rows.map(function (row) { return row.tablename });
+        return this.catalog.getTableNames(schemaName);
     }
 
     /**

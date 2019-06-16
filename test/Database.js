@@ -21,19 +21,17 @@ describe("Test Database...", async function () {
 
     it("should load sample data with batch(DATA/sample.sql)", async function () {
         database.batch(__dirname + '/DATA/sample.sql');
-
-        let sampleTableNames = await database.getTableNames('sample');
-        expect(sampleTableNames).to.contains('user');
-
-        let users = await database.query('SELECT id,username FROM sample.user ORDER BY id');
+        let users = await database.query('SELECT id,username,birthdate::text FROM sample.user ORDER BY id');
         expect(users).to.deep.equals([
             {
                 "id": 1,
-                "username": "titi"
+                "username": "titi",
+                "birthdate": "1984-01-01"
             },
             {
                 "id": 2,
-                "username": "toto"
+                "username": "toto",
+                "birthdate": "1986-01-01"
             }
         ]);
     });

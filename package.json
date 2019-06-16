@@ -1,6 +1,6 @@
 {
   "name": "@mborne/postgis-helper",
-  "version": "0.1.1-pre",
+  "version": "0.2.0-pre",
   "description": "Helpers for PostgreSQL/PostGIS (schema discovery, psql, pg_dump,...)",
   "main": "index.js",
   "scripts": {
