@@ -29,6 +29,15 @@ describe("Test Catalog...", async function () {
         expect(schemaNames).to.contains('public');
     });
 
+    it("should return ['user','building_h'] for getTableNames('sample')", async function () {
+        let tableNames = await catalog.getTableNames('sample');
+        //console.log(JSON.stringify(tableNames,null,2));
+        expect(tableNames).to.deep.equals([
+            'building_h',
+            'user'
+        ]);
+    });
+
     it("should contains 'user' in getTableName('sample')", async function () {
         let sampleTableNames = await catalog.getTableNames('sample');
         expect(sampleTableNames).to.contains('user');
@@ -36,44 +45,8 @@ describe("Test Catalog...", async function () {
 
     it("should describe properties of table user", async function () {
         let table = await catalog.getTable('sample', 'user');
-        expect(table).to.deep.equals(
-            {
-                "schemaName": "sample",
-                "tableName": "user",
-                "columns": [
-                    {
-                        "name": "id",
-                        "type": "integer",
-                        "is_nullable": false,
-                        "is_primary": true
-                    },
-                    {
-                        "name": "username",
-                        "type": "text",
-                        "is_nullable": true,
-                        "is_primary": false
-                    },
-                    {
-                        "name": "birthdate",
-                        "type": "date",
-                        "is_nullable": true,
-                        "is_primary": false
-                    },
-                    {
-                        "name": "is_admin",
-                        "type": "boolean",
-                        "is_nullable": true,
-                        "is_primary": false
-                    },
-                    {
-                        "name": "location",
-                        "type": "geometry(Point,4326)",
-                        "is_nullable": true,
-                        "is_primary": false
-                    }
-                ]
-            }
-        );
+        const expected = require('./DATA/sample.user-expected.json');
+        expect(table).to.deep.equals(expected);
     });
 
 });

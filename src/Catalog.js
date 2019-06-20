@@ -4,6 +4,8 @@ const Database = require('./Database');
 const Column   = require('./model/Column');
 const Table    = require('./model/Table');
 
+const helper = require('./helper');
+
 /**
  * Helper to Databaseget information about PostgreSQL schema
  */
@@ -47,9 +49,9 @@ class Catalog {
      */
     async getTableNames(schemaName){
         debug(`Catalog.getTableNames(${schemaName})...`);
-        const sql = `SELECT * FROM pg_catalog.pg_tables WHERE schemaname = $1`;
-        let rows = await this.database.query(sql, [schemaName]);
-        return rows.map(function (row) { return row.tablename });
+        let query = helper.getQueryListTables(schemaName);
+        let rows = await this.database.query(query);
+        return rows.map(function (row) { return row.name });
     }
 
     /**
@@ -71,23 +73,8 @@ class Catalog {
      */
     async getColumns(schemaName,tableName){
         debug(`Catalog.getColumns(${schemaName}, ${tableName})...`);
-        const sql =
-`
-SELECT
-    a.attname as name,
-    format_type(a.atttypid, a.atttypmod) AS type,
-    (a.attnotnull = false) as is_nullable,
-    (
-        select count(*) from pg_catalog.pg_index i
-        where a.attrelid = i.indrelid
-        and a.attnum = ANY(i.indkey)
-        and i.indisprimary
-    ) = 1 as is_primary
-from pg_attribute a
-    where a.attrelid = ($1 ||'.' || $2)::regclass
-    and a.attnum > 0
-`;
-        return this.database.query(sql,[schemaName,tableName]).then(function(rows){
+        let query = helper.getQueryListColumns(schemaName,tableName);
+        return this.database.query(query).then(function(rows){
             return rows.map(row => {
                 return Column.createColumn(row);
             });

@@ -2,6 +2,10 @@ const Column = require('./Column');
 
 /**
  * Represents the schema of a given table
+ *
+ * TODO rename schemaName to schema and tableName to table
+ * TODO add primaryKey string|string[]
+ * TODO constructor with a JSON config
  */
 class Table {
 

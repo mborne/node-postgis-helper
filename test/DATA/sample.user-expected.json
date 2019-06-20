@@ -1,0 +1,31 @@
+{
+    "schemaName": "sample",
+    "tableName": "user",
+    "columns": [
+        {
+            "name": "id",
+            "type": "integer",
+            "is_nullable": false
+        },
+        {
+            "name": "username",
+            "type": "text",
+            "is_nullable": true
+        },
+        {
+            "name": "birthdate",
+            "type": "date",
+            "is_nullable": true
+        },
+        {
+            "name": "is_admin",
+            "type": "boolean",
+            "is_nullable": true
+        },
+        {
+            "name": "location",
+            "type": "geometry(Point,4326)",
+            "is_nullable": true
+        }
+    ]
+}

@@ -1,6 +1,6 @@
 const debug = require('debug')('postgis-helper');
 
-const { Client } = require('pg');
+const { Client, QueryConfig } = require('pg');
 
 const pool = require('./internal/pool');
 const psql = require('./internal/psql');
@@ -64,12 +64,12 @@ class Database {
 
     /**
      * Execute query
-     * @param {string} sql
+     * @param {string|QueryConfig} query
      * @param {any[]} values
      * @return {Object[]}
      */
-    async query(sql, values) {
-        const res = await this.client.query(sql, values)
+    async query(query, values) {
+        const res = await this.client.query(query, values)
         return res.rows;
     }
 

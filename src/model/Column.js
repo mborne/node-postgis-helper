@@ -18,10 +18,6 @@ class Column {
          * @property {boolean} null value allowed
          */
         this.is_nullable = true;
-        /**
-         * @property {text} column name
-         */
-        this.is_primary = false;
     }
 
     /**

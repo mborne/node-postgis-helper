@@ -14,3 +14,18 @@ CREATE TABLE sample.user (
 
 INSERT INTO sample.user (username,birthdate) VALUES ('titi','1984-01-01');
 INSERT INTO sample.user (username,birthdate) VALUES ('toto','1986-01-01');
+
+
+
+-- table with composite primary key
+CREATE TABLE sample.building_h (
+    id uuid,
+    version integer DEFAULT 1,
+    deleted boolean DEFAULT 'F',
+
+    name text NOT null,
+    geometry geometry(Polygon,4326),
+
+    primary key(id,version)
+);
+
