@@ -86,6 +86,7 @@ CREATE TABLE IF NOT EXISTS ${this.schemaName}.source
 
     /**
      * Helper returning today date
+     * @deprecated
      */
     static today(){
         return new Date().toISOString().slice(0,10);

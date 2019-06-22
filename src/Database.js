@@ -6,6 +6,7 @@ const pool = require('./internal/pool');
 const psql = require('./internal/psql');
 
 const Catalog = require('./Catalog');
+const Table = require('./model/Table');
 
 /**
  * Helper to query database
@@ -97,6 +98,15 @@ class Database {
      */
     async getTableNames(schemaName) {
         return this.catalog.getTableNames(schemaName);
+    }
+
+    /**
+     * Get tables with primaryKey, columns and constraints
+     * @param {string} schemaName
+     * @return {Table[]}
+     */
+    async getTables(schemaName){
+        return this.catalog.getTables(schemaName);
     }
 
     /**
