@@ -3,6 +3,7 @@ const expect = require("chai").expect;
 const Database = require('../src/Database');
 const Catalog = require('../src/Catalog');
 
+
 /**
  * @var {Database}
  */
@@ -43,10 +44,12 @@ describe("Test Catalog...", async function () {
         expect(sampleTableNames).to.contains('user');
     });
 
-    it("should describe properties of sample.user", async function () {
-        let table = await catalog.getTable('sample', 'user');
-        const expected = require('./DATA/sample.user-expected.json');
-        expect(table).to.deep.equals(expected);
+
+    it("should return an expected result for catalog.getTables('sample')", async function () {
+        let tables = await catalog.getTables('sample');
+        //console.log(JSON.stringify(tables,null,2));
+        const expected = require('./DATA/sample.tables.json');
+        expect(tables).to.deep.equals(expected);
     });
 
 });

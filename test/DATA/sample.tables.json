@@ -1,0 +1,64 @@
+[
+    {
+        "schema": "sample",
+        "name": "building_h",
+        "columns": [
+            {
+                "name": "id",
+                "type": "uuid",
+                "is_nullable": false
+            },
+            {
+                "name": "version",
+                "type": "integer",
+                "is_nullable": false
+            },
+            {
+                "name": "deleted",
+                "type": "boolean",
+                "is_nullable": true
+            },
+            {
+                "name": "name",
+                "type": "text",
+                "is_nullable": false
+            },
+            {
+                "name": "geometry",
+                "type": "geometry(Polygon,4326)",
+                "is_nullable": true
+            }
+        ]
+    },
+    {
+        "schema": "sample",
+        "name": "user",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "is_nullable": false
+            },
+            {
+                "name": "username",
+                "type": "text",
+                "is_nullable": true
+            },
+            {
+                "name": "birthdate",
+                "type": "date",
+                "is_nullable": true
+            },
+            {
+                "name": "is_admin",
+                "type": "boolean",
+                "is_nullable": true
+            },
+            {
+                "name": "location",
+                "type": "geometry(Point,4326)",
+                "is_nullable": true
+            }
+        ]
+    }
+]

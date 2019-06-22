@@ -9,7 +9,7 @@ function getQueryListTables(schemaName){
     let sqlParams = [];
     let sqlParts = [
         `select`,
-        `table_schema as schema, table_name as name, table_type as type`,
+        `table_schema as schema, table_name as table, ( table_type = 'VIEW' ) as is_view`,
         `from information_schema.tables`
     ];
     if ( schemaName ){

@@ -10,14 +10,27 @@ const Column = require('./Column');
 class Table {
 
     /**
-     * @param {string} schemaName
-     * @param {string} tableName
-     * @param {Column[]} columns
+     * @param {object} config
+     * @param {string} config.schema
+     * @param {string} config.name
+     * @param {Column[]} [config.columns]
      */
-    constructor(schemaName,tableName,columns){
-        this.schemaName = schemaName;
-        this.tableName = tableName;
-        this.columns = columns;
+    constructor(config){
+        /**
+         * @property {string} schema name
+         */
+        this.schema = config.schema ;
+        /**
+         * @property {string} table name
+         */
+        this.name  = config.name ;
+
+        if ( typeof config.columns !== 'undefined'){
+            /**
+             * @property {Column[]} columns
+             */
+            this.columns = config.columns ;
+        }
     }
 
 }

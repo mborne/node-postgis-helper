@@ -1,6 +1,6 @@
 {
-    "schemaName": "sample",
-    "tableName": "user",
+    "schema": "sample",
+    "name": "user",
     "columns": [
         {
             "name": "id",

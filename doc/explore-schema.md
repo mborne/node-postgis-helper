@@ -4,9 +4,9 @@
 
 ```sql
 select
-	table_schema,
-	table_name,
-	table_type
+	table_schema as schema,
+	table_name as table,
+	( table_type = 'VIEW' ) as is_view
 from information_schema.tables
 	where table_schema not like 'pg_%'
   	  and table_schema != 'information_schema'
@@ -18,7 +18,7 @@ from information_schema.tables
 
 ```sql
 SELECT
-    a.attname as name,
+    a.attname as column,
     format_type(a.atttypid, a.atttypmod) AS type,
     (a.attnotnull = false) as is_nullable
 from pg_attribute a

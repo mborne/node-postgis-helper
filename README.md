@@ -63,6 +63,7 @@ Add hability to retreive main table properties :
 
 * [x] `table.schema`
 * [x] `table.name`
+* [ ] `table.is_view`
 * [ ] `table.primaryKey` : `string|string[]`
 * [ ] `table.columns`
   * [x] `table.columns[*].name`

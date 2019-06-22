@@ -1,5 +1,7 @@
 const debug = require('debug')('postgis-helper');
 
+const _ = require('lodash');
+
 const Database = require('./Database');
 const Column   = require('./model/Column');
 const Table    = require('./model/Table');
@@ -49,20 +51,46 @@ class Catalog {
      */
     async getTableNames(schemaName){
         debug(`Catalog.getTableNames(${schemaName})...`);
-        let query = helper.getQueryListTables(schemaName);
+        let query = await helper.getQueryListTables(schemaName);
         let rows = await this.database.query(query);
-        return rows.map(function (row) { return row.name });
+        return rows.map(function(row){
+            return row.table;
+        });
     }
 
     /**
-     * Get table by schemaName and tableName
-     * @param {string} schemaName
-     * @param {string} tableName
+     * Get table for a given schema
+     *
+     * @param {string} schemaName filter according to a given schema
+     * @param {object} options
+     * @param {boolean} [options.withColumns=true] retrieve columns for each table
      */
-    async getTable(schemaName, tableName){
-        debug(`Catalog.getTable(${schemaName}, ${tableName})...`);
-        let columns = await this.getColumns(schemaName,tableName);
-        return new Table(schemaName,tableName,columns);
+    async getTables(schemaName,options){
+        debug(`Catalog.getTables(${JSON.stringify(options)})`);
+
+        options = _.defaults({
+            withColumns: true
+        },options);
+
+        let rows = await this.database.query(
+            helper.getQueryListTables(schemaName)
+        );
+        let tables = rows.map(function(row){
+            return new Table({
+                schema: row.schema,
+                name: row.table
+            });
+        });
+
+        /* retrieve table properties */
+        for ( var i in tables ){
+            let table = tables[i];
+            if ( options.withColumns ){
+                table.columns = await this.getColumns(table.schema,table.name);
+            }
+        }
+
+        return tables;
     }
 
     /**
@@ -80,6 +108,7 @@ class Catalog {
             });
         });
     }
+
 
 }
 
