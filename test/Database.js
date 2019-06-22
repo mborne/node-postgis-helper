@@ -2,6 +2,9 @@ const expect = require("chai").expect;
 
 const Database = require('../src/Database');
 
+/**
+ * @var {Database}
+ */
 var database = null;
 
 describe("Test Database...", async function () {
@@ -19,8 +22,21 @@ describe("Test Database...", async function () {
         expect(schemaNames).to.contains('public');
     });
 
+    it("should return true for hasSchema('public')", async function () {
+        let result = await database.hasSchema('public');
+        expect(result).to.be.true;
+    });
+
     it("should load sample data with batch(DATA/sample.sql)", async function () {
-        database.batch(__dirname + '/DATA/sample.sql');
+        /* load sample data */
+        await database.batch(__dirname + '/DATA/sample.sql');
+        /* check table exists */
+        let tableNames = await database.getTableNames('sample');
+        expect(tableNames).to.deep.equals([
+            'building_h',
+            'user'
+        ]);
+        /* retrieve users */
         let users = await database.query('SELECT id,username,birthdate::text FROM sample.user ORDER BY id');
         expect(users).to.deep.equals([
             {

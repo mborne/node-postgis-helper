@@ -3,7 +3,8 @@ const debug = require('debug')('postgis-helper');
 const Database = require('./Database');
 
 /**
- * Allows to store sources to meet some license requirement
+ * Allows to store sources in a dedicated table {schemaName}.source
+ * to meet some opendata license requirement
  */
 class SourceManager {
 

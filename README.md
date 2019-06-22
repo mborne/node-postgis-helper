@@ -70,6 +70,7 @@ Add hability to retreive main table properties :
   * [x] `table.columns[*].is_nullable`
   * [ ] `table.columns[*].references`
 
+
 Add helper to parse PostgreSQL/PostGIS type and convert to JSON type :
 
 * [ ] `helper.decodePgType(pg_type)`

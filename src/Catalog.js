@@ -39,8 +39,8 @@ class Catalog {
      */
     async getSchemaNames() {
         debug('Catalog.getSchema()...');
-        const sql = `select schema_name from information_schema.schemata WHERE schema_name NOT LIKE 'pg_%' AND schema_name != 'information_schema'`;
-        let rows = await this.database.query(sql);
+        let query = helper.getQueryListSchema();
+        let rows = await this.database.query(query);
         return rows.map(function (row) { return row.schema_name });
     }
 

@@ -43,7 +43,7 @@ describe("Test Catalog...", async function () {
         expect(sampleTableNames).to.contains('user');
     });
 
-    it("should describe properties of table user", async function () {
+    it("should describe properties of sample.user", async function () {
         let table = await catalog.getTable('sample', 'user');
         const expected = require('./DATA/sample.user-expected.json');
         expect(table).to.deep.equals(expected);
