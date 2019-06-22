@@ -76,7 +76,8 @@ class Catalog {
         let tables = rows.map(function(row){
             return new Table({
                 schema: row.schema,
-                name: row.table
+                name: row.table,
+                is_view: row.is_view
             });
         });
 
@@ -101,15 +102,15 @@ class Catalog {
         let query = helper.getQueryListColumns(schemaName,tableName);
         return this.database.query(query).then(function(rows){
             return rows.map(row => {
-                return Column.createColumn(row);
+                return new Column(row);
             });
         });
     }
 
     /**
      * Retrieve primary key for a given table
-     * @param {string} schemaName 
-     * @param {string} tableName 
+     * @param {string} schemaName
+     * @param {string} tableName
      */
     async getPrimaryKey(schemaName,tableName){
         debug(`Catalog.getPrimaryKey(${schemaName}, ${tableName})...`);

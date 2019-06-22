@@ -13,7 +13,7 @@ class Table {
      * @param {object} config
      * @param {string} config.schema
      * @param {string} config.name
-     * @param {Column[]} [config.columns]
+     * @param {Column[]} config.columns
      */
     constructor(config){
         /**
@@ -28,6 +28,10 @@ class Table {
          * @property {string|string[]} primary key
          */
         this.primaryKey = config.primaryKey;
+        /**
+         * @property {boolean} true if table is a view
+         */
+        this.is_view = config.is_view;
         /**
          * @property {Column[]} columns
          */

@@ -5,29 +5,25 @@
  */
 class Column {
 
-    constructor() {
+    /**
+     * @param {object} config
+     * @param {string} config.name
+     * @param {string} config.type
+     * @param {string} config.is_nullable
+     */
+    constructor(config) {
         /**
          * @property {text} column name
          */
-        this.name = null;
+        this.name = config.name;
         /**
-         * @property {text} PostgreSQL type
+         * @property {text} SQL type
          */
-        this.type = "text";
+        this.type = config.type;
         /**
          * @property {boolean} null value allowed
          */
-        this.is_nullable = true;
-    }
-
-    /**
-     * Create column from row data
-     * @param {object} row
-     * @return {Column}
-     */
-    static createColumn(row){
-        let column = new Column();
-        return Object.assign(column,row);
+        this.is_nullable = config.is_nullable;
     }
 
 }
