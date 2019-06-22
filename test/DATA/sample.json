@@ -2,6 +2,10 @@
     {
         "schema": "sample",
         "name": "building_h",
+        "primaryKey": [
+            "id",
+            "version"
+        ],
         "columns": [
             {
                 "name": "id",
@@ -33,6 +37,7 @@
     {
         "schema": "sample",
         "name": "user",
+        "primaryKey": "id",
         "columns": [
             {
                 "name": "id",

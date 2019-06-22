@@ -24,13 +24,14 @@ class Table {
          * @property {string} table name
          */
         this.name  = config.name ;
-
-        if ( typeof config.columns !== 'undefined'){
-            /**
-             * @property {Column[]} columns
-             */
-            this.columns = config.columns ;
-        }
+        /**
+         * @property {string|string[]} primary key
+         */
+        this.primaryKey = config.primaryKey;
+        /**
+         * @property {Column[]} columns
+         */
+        this.columns = config.columns ;
     }
 
 }

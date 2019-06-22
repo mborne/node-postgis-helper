@@ -64,8 +64,8 @@ Add hability to retreive main table properties :
 * [x] `table.schema`
 * [x] `table.name`
 * [ ] `table.is_view`
-* [ ] `table.primaryKey` : `string|string[]`
-* [ ] `table.columns`
+* [x] `table.primaryKey` : `string|string[]`
+* [x] `table.columns`
   * [x] `table.columns[*].name`
   * [x] `table.columns[*].type`
   * [x] `table.columns[*].is_nullable`
@@ -87,11 +87,11 @@ Add converter to other schema :
 * [ ] `helper.toJsonSchema(table)` : converts to JSON object definition
 * [ ] `helper.toGeoJsonSchema(table,options)`
   * [ ] Converts to GeoJSON
-  * [ ] Support options.geometryName (with default behavior = GeoServer)
+  * [ ] Support `options.geometryName` (with default behavior = GeoServer, first one or last one, don't remember)
 * [ ] `helper.toTableSchema(table)`
 
 
-### 0.3 - Helpers to ease basic API generation
+### 0.3 - Helpers to write API
 
 * [ ] `helper.select(table,options)`
   * [ ] `options.columns` : `?_columns=id,name,the_geom`

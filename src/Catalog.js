@@ -62,8 +62,6 @@ class Catalog {
      * Get table for a given schema
      *
      * @param {string} schemaName filter according to a given schema
-     * @param {object} options
-     * @param {boolean} [options.withColumns=true] retrieve columns for each table
      */
     async getTables(schemaName,options){
         debug(`Catalog.getTables(${JSON.stringify(options)})`);
@@ -85,9 +83,8 @@ class Catalog {
         /* retrieve table properties */
         for ( var i in tables ){
             let table = tables[i];
-            if ( options.withColumns ){
-                table.columns = await this.getColumns(table.schema,table.name);
-            }
+            table.primaryKey = await this.getPrimaryKey(table.schema,table.name);
+            table.columns    = await this.getColumns(table.schema,table.name);
         }
 
         return tables;
@@ -107,6 +104,27 @@ class Catalog {
                 return Column.createColumn(row);
             });
         });
+    }
+
+    /**
+     * Retrieve primary key for a given table
+     * @param {string} schemaName 
+     * @param {string} tableName 
+     */
+    async getPrimaryKey(schemaName,tableName){
+        debug(`Catalog.getPrimaryKey(${schemaName}, ${tableName})...`);
+        let query = helper.getQueryPrimaryKey(schemaName,tableName);
+        let rows = await this.database.query(query);
+        let columns = rows.map(function(row){
+            return row.column;
+        })
+        if ( columns.length == 0 ){
+            return null;
+        }else if ( columns.length == 1 ){
+            return columns[0];
+        }else{
+            return columns;
+        }
     }
 
 
