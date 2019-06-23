@@ -65,3 +65,44 @@ where tc.constraint_type = 'PRIMARY KEY'
 order by kcu.ordinal_position
 ;
 ```
+
+
+## Retreive foreign keys
+
+
+```sql
+
+select
+	tc.constraint_schema,
+	tc.constraint_name,
+	tc.table_schema,
+    tc.table_name,
+    kcu.column_name,
+    ccu.table_schema as foreign_table_schema,
+    ccu.table_name AS foreign_table_name,
+    ccu.column_name AS foreign_column_name
+FROM
+    information_schema.table_constraints AS tc
+    JOIN information_schema.key_column_usage
+        AS kcu ON tc.constraint_name = kcu.constraint_name
+    JOIN information_schema.constraint_column_usage
+        AS ccu ON ccu.constraint_name = tc.constraint_name
+WHERE constraint_type = 'FOREIGN KEY';
+
+```
+
+Or formatted version :
+
+```sql
+SELECT
+	conname,
+  	pg_catalog.pg_get_constraintdef(r.oid, true) as condef
+FROM pg_catalog.pg_constraint r
+WHERE r.contype = 'f'
+  --and r.conrelid = 'sample.ref_commune'::regclass
+ORDER BY conname
+;
+```
+
+Source : https://stackoverflow.com/a/1154078
+

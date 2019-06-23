@@ -128,6 +128,19 @@ class Catalog {
         }
     }
 
+    /**
+     * Retrieve foreign keys for a table
+     * @param {string} schemaName
+     * @param {string} tableName
+     */
+    async getForeignKeys(schemaName,tableName){
+        debug(`Catalog.getForeignKeys(${schemaName}, ${tableName})...`);
+        let query = helper.getQueryForeignKey(schemaName,tableName);
+        let rows = await this.database.query(query);
+        // TODO transform
+        return rows;
+    }
+
 
 }
 

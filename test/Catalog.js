@@ -49,19 +49,6 @@ describe("Catalog...", async function () {
     });
 
 
-    describe("Catalog.getPrimaryKey(schemaName,tableName)...", async function () {
-
-        it("should return two items for getPrimaryKey('sample','building_h')", async function () {
-            let primaryKey = await catalog.getPrimaryKey('sample','building_h');
-            expect(primaryKey).to.deep.equals([
-                "id",
-                "version"
-            ]);
-        });
-
-    });
-
-
     describe("Catalog.getTables(schemaName)...", async function () {
 
         it("should return an expected result for catalog.getTables('sample')", async function () {
@@ -69,6 +56,29 @@ describe("Catalog...", async function () {
             //console.log(JSON.stringify(tables,null,2));
             const expected = require('./DATA/sample.json');
             expect(tables).to.deep.equals(expected);
+        });
+
+    });
+
+
+
+    describe("Catalog.getForeignKeys(schemaName,tableName)...", async function () {
+
+        it("should return two items for getForeignKeys('sample','building_h')", async function () {
+            let foreignKeys = await catalog.getForeignKeys('sample', 'building_h');
+            console.log(JSON.stringify(foreignKeys, null, 2));
+            const expected = [
+                {
+                    "name": "building_h_owner_id_fkey",
+                    "columns": ["owner_id"],
+                    "target": {
+                        "schema": "sample",
+                        "name": "user",
+                        "columns": ["id"]
+                    }
+                }
+            ];
+            expect(foreignKeys).to.deep.equals(expected);
         });
 
     });

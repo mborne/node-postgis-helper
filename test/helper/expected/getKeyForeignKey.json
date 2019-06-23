@@ -1,0 +1,7 @@
+{
+    "text": "SELECT\n    conname as name,\n    pg_catalog.pg_get_constraintdef(r.oid, true) as definition\nFROM pg_catalog.pg_constraint r\nWHERE r.contype = 'f'\n    AND r.conrelid = ($1 ||'.' || $2)::regclass\nORDER BY conname",
+    "values": [
+        "sample",
+        "user"
+    ]
+}

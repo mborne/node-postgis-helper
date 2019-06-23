@@ -29,6 +29,11 @@
                 "is_nullable": false
             },
             {
+                "name": "owner_id",
+                "type": "integer",
+                "is_nullable": true
+            },
+            {
                 "name": "geometry",
                 "type": "geometry(Polygon,4326)",
                 "is_nullable": true
