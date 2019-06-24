@@ -13,9 +13,8 @@ SELECT
     conname as name,
     pg_catalog.pg_get_constraintdef(r.oid, true) as definition
 FROM pg_catalog.pg_constraint r
-WHERE r.contype = 'f'
-    AND r.conrelid = ($1 ||'.' || $2)::regclass
-ORDER BY conname
+WHERE r.conrelid = ($1 || '.' || $2)::regclass
+  AND r.contype = 'f' ORDER BY conname
 `;
     return {
         text: sql.trim(),

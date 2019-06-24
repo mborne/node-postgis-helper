@@ -32,10 +32,7 @@ describe("Test Database...", async function () {
         await database.batch(__dirname + '/DATA/sample.sql');
         /* check table exists */
         let tableNames = await database.getTableNames('sample');
-        expect(tableNames).to.deep.equals([
-            'building_h',
-            'user'
-        ]);
+        expect(tableNames).to.contains('user');
         /* retrieve users */
         let users = await database.query('SELECT id,username,birthdate::text FROM sample.user ORDER BY id');
         expect(users).to.deep.equals([

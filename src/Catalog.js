@@ -6,7 +6,8 @@ const Database = require('./Database');
 const Column   = require('./model/Column');
 const Table    = require('./model/Table');
 
-const helper = require('./helper');
+const queries = require('./queries');
+const parseForeignKey = require('./internal/parseForeignKey');
 
 /**
  * Helper to Databaseget information about PostgreSQL schema
@@ -41,7 +42,7 @@ class Catalog {
      */
     async getSchemaNames() {
         debug('Catalog.getSchema()...');
-        let query = helper.getQueryListSchema();
+        let query = queries.getQueryListSchema();
         let rows = await this.database.query(query);
         return rows.map(function (row) { return row.schema_name });
     }
@@ -51,7 +52,7 @@ class Catalog {
      */
     async getTableNames(schemaName){
         debug(`Catalog.getTableNames(${schemaName})...`);
-        let query = await helper.getQueryListTables(schemaName);
+        let query = await queries.getQueryListTables(schemaName);
         let rows = await this.database.query(query);
         return rows.map(function(row){
             return row.table;
@@ -71,7 +72,7 @@ class Catalog {
         },options);
 
         let rows = await this.database.query(
-            helper.getQueryListTables(schemaName)
+            queries.getQueryListTables(schemaName)
         );
         let tables = rows.map(function(row){
             return new Table({
@@ -84,8 +85,9 @@ class Catalog {
         /* retrieve table properties */
         for ( var i in tables ){
             let table = tables[i];
-            table.primaryKey = await this.getPrimaryKey(table.schema,table.name);
-            table.columns    = await this.getColumns(table.schema,table.name);
+            table.primaryKey  = await this.getPrimaryKey(table.schema,table.name);
+            table.columns     = await this.getColumns(table.schema,table.name);
+            table.foreignKeys = await this.getForeignKeys(table.schema,table.name);
         }
 
         return tables;
@@ -99,7 +101,7 @@ class Catalog {
      */
     async getColumns(schemaName,tableName){
         debug(`Catalog.getColumns(${schemaName}, ${tableName})...`);
-        let query = helper.getQueryListColumns(schemaName,tableName);
+        let query = queries.getQueryListColumns(schemaName,tableName);
         return this.database.query(query).then(function(rows){
             return rows.map(row => {
                 return new Column(row);
@@ -114,7 +116,7 @@ class Catalog {
      */
     async getPrimaryKey(schemaName,tableName){
         debug(`Catalog.getPrimaryKey(${schemaName}, ${tableName})...`);
-        let query = helper.getQueryPrimaryKey(schemaName,tableName);
+        let query = queries.getQueryPrimaryKey(schemaName,tableName);
         let rows = await this.database.query(query);
         let columns = rows.map(function(row){
             return row.column;
@@ -135,13 +137,14 @@ class Catalog {
      */
     async getForeignKeys(schemaName,tableName){
         debug(`Catalog.getForeignKeys(${schemaName}, ${tableName})...`);
-        let query = helper.getQueryForeignKey(schemaName,tableName);
+        let query = queries.getQueryForeignKey(schemaName,tableName);
         let rows = await this.database.query(query);
-        // TODO transform
-        return rows;
+
+        /* parse foreign keys */
+        return rows.map(row => {
+            return parseForeignKey(row)
+        });
     }
-
-
 }
 
 module.exports = Catalog;

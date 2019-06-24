@@ -2,11 +2,11 @@
     {
         "schema": "sample",
         "name": "building_h",
-        "is_view": false,
         "primaryKey": [
             "id",
             "version"
         ],
+        "is_view": false,
         "columns": [
             {
                 "name": "id",
@@ -37,6 +37,79 @@
                 "name": "geometry",
                 "type": "geometry(Polygon,4326)",
                 "is_nullable": true
+            }
+        ],
+        "foreignKeys": [
+            {
+                "name": "building_h_owner_id_fkey",
+                "columns": [
+                    "owner_id"
+                ],
+                "target": {
+                    "schema": "sample",
+                    "name": "user",
+                    "columns": [
+                        "id"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "schema": "sample",
+        "name": "building_owner",
+        "primaryKey": "id",
+        "is_view": false,
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "is_nullable": false
+            },
+            {
+                "name": "building_id",
+                "type": "uuid",
+                "is_nullable": true
+            },
+            {
+                "name": "building_version",
+                "type": "integer",
+                "is_nullable": true
+            },
+            {
+                "name": "owner_id",
+                "type": "integer",
+                "is_nullable": true
+            }
+        ],
+        "foreignKeys": [
+            {
+                "name": "building_owner_building_id_fkey",
+                "columns": [
+                    "building_id",
+                    "building_version"
+                ],
+                "target": {
+                    "schema": "sample",
+                    "name": "building_h",
+                    "columns": [
+                        "id",
+                        "version"
+                    ]
+                }
+            },
+            {
+                "name": "building_owner_owner_id_fkey",
+                "columns": [
+                    "owner_id"
+                ],
+                "target": {
+                    "schema": "sample",
+                    "name": "user",
+                    "columns": [
+                        "id"
+                    ]
+                }
             }
         ]
     },
@@ -71,6 +144,7 @@
                 "type": "geometry(Point,4326)",
                 "is_nullable": true
             }
-        ]
+        ],
+        "foreignKeys": []
     }
 ]

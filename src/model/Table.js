@@ -2,6 +2,18 @@ const _ = require('lodash');
 const Column = require('./Column');
 
 /**
+ * Model for foreign keys
+ * @typedef {object} ForeignKey
+ * @property {string} name foreign key name
+ * @property {string[]} columns source columns
+ * @property {object} target
+ * @property {string} target.schema target table schema
+ * @property {string} target.name target table name
+ * @property {string[]} target.columns target columns
+ */
+
+
+/**
  * Represents the schema of a given table
  *
  * TODO rename schemaName to schema and tableName to table
@@ -15,6 +27,8 @@ class Table {
      * @param {string} config.schema
      * @param {string} config.name
      * @param {Column[]} config.columns
+     * @param {string|string[]} config.primaryKey
+     * @param {ForeignKey[]} config.foreignKeys
      */
     constructor(config){
         /**
@@ -37,6 +51,10 @@ class Table {
          * @property {Column[]} columns
          */
         this.columns = config.columns ;
+        /**
+         * @property {ForeignKey[]} foreign keys
+         */
+        this.foreignKeys = config.foreignKeys ;
     }
 
 }

@@ -42,6 +42,7 @@ describe("Catalog...", async function () {
             //console.log(JSON.stringify(tableNames,null,2));
             expect(tableNames).to.deep.equals([
                 'building_h',
+                'building_owner',
                 'user'
             ]);
         });
@@ -66,7 +67,7 @@ describe("Catalog...", async function () {
 
         it("should return two items for getForeignKeys('sample','building_h')", async function () {
             let foreignKeys = await catalog.getForeignKeys('sample', 'building_h');
-            console.log(JSON.stringify(foreignKeys, null, 2));
+            //console.log(JSON.stringify(foreignKeys, null, 2));
             const expected = [
                 {
                     "name": "building_h_owner_id_fkey",
