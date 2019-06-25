@@ -3,7 +3,9 @@ const Column = require('./Column');
 const _ = require('lodash');
 
 /**
- * Model for foreign keys
+ *
+ * Model describing a ForeignKey for a given table
+ *
  * @typedef {object} ForeignKey
  * @property {string} name foreign key name
  * @property {string[]} columns source columns
@@ -15,7 +17,7 @@ const _ = require('lodash');
 
 
 /**
- * Represents the schema of a given table
+ * Model describing an SQL table
  */
 class Table {
 
@@ -23,10 +25,12 @@ class Table {
      * @param {object} config
      * @param {string} config.schema
      * @param {string} config.name
-     * @param {Column[]} config.columns
+     * @param {string} [config.title]
+     * @param {string} [config.description]
      * @param {string[]} config.primaryKey
+     * @param {Column[]} config.columns
      * @param {ForeignKey[]} config.foreignKeys
-     * @param {object} config.tags
+     * @param {object} [config.tags={}]
      */
     constructor(config){
         /**
@@ -38,13 +42,21 @@ class Table {
          */
         this.name  = _.defaultTo( config.name, null ) ;
         /**
-         * @property {string[]} columns composing primary key
+         * @property {string} display name
          */
-        this.primaryKey = _.defaultTo( config.primaryKey, [] );
+        this.title = _.defaultTo( config.title, config.name ) ;
+        /**
+         * @property {string} content description
+         */
+        this.description = _.defaultTo( config.description, null ) ;
         /**
          * @property {Column[]} columns
          */
         this.columns = _.defaultTo( config.columns, [] ) ;
+        /**
+         * @property {string[]} columns composing primary key
+         */
+        this.primaryKey = _.defaultTo( config.primaryKey, [] );
         /**
          * @property {ForeignKey[]} foreign keys
          */

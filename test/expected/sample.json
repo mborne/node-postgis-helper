@@ -1,0 +1,211 @@
+[
+  {
+    "schema": "sample",
+    "name": "building_h",
+    "title": "building_h",
+    "description": null,
+    "primaryKey": [
+      "id",
+      "version"
+    ],
+    "columns": [
+      {
+        "name": "id",
+        "title": "id",
+        "description": null,
+        "type": "uuid",
+        "required": true,
+        "tags": {}
+      },
+      {
+        "name": "version",
+        "title": "version",
+        "description": null,
+        "type": "integer",
+        "required": true,
+        "tags": {}
+      },
+      {
+        "name": "deleted",
+        "title": "deleted",
+        "description": null,
+        "type": "boolean",
+        "required": false,
+        "tags": {}
+      },
+      {
+        "name": "name",
+        "title": "name",
+        "description": null,
+        "type": "text",
+        "required": true,
+        "tags": {}
+      },
+      {
+        "name": "owner_id",
+        "title": "owner_id",
+        "description": null,
+        "type": "integer",
+        "required": false,
+        "tags": {}
+      },
+      {
+        "name": "geometry",
+        "title": "geometry",
+        "description": null,
+        "type": "geometry(Polygon,4326)",
+        "required": false,
+        "tags": {}
+      }
+    ],
+    "foreignKeys": [
+      {
+        "name": "building_h_owner_id_fkey",
+        "columns": [
+          "owner_id"
+        ],
+        "target": {
+          "schema": "sample",
+          "name": "user",
+          "columns": [
+            "id"
+          ]
+        }
+      }
+    ],
+    "tags": {
+      "is_view": false
+    }
+  },
+  {
+    "schema": "sample",
+    "name": "building_owner",
+    "title": "building_owner",
+    "description": null,
+    "primaryKey": [
+      "id"
+    ],
+    "columns": [
+      {
+        "name": "id",
+        "title": "id",
+        "description": null,
+        "type": "integer",
+        "required": true,
+        "tags": {}
+      },
+      {
+        "name": "building_id",
+        "title": "building_id",
+        "description": null,
+        "type": "uuid",
+        "required": false,
+        "tags": {}
+      },
+      {
+        "name": "building_version",
+        "title": "building_version",
+        "description": null,
+        "type": "integer",
+        "required": false,
+        "tags": {}
+      },
+      {
+        "name": "owner_id",
+        "title": "owner_id",
+        "description": null,
+        "type": "integer",
+        "required": false,
+        "tags": {}
+      }
+    ],
+    "foreignKeys": [
+      {
+        "name": "building_owner_building_id_fkey",
+        "columns": [
+          "building_id",
+          "building_version"
+        ],
+        "target": {
+          "schema": "sample",
+          "name": "building_h",
+          "columns": [
+            "id",
+            "version"
+          ]
+        }
+      },
+      {
+        "name": "building_owner_owner_id_fkey",
+        "columns": [
+          "owner_id"
+        ],
+        "target": {
+          "schema": "sample",
+          "name": "user",
+          "columns": [
+            "id"
+          ]
+        }
+      }
+    ],
+    "tags": {
+      "is_view": false
+    }
+  },
+  {
+    "schema": "sample",
+    "name": "user",
+    "title": "user",
+    "description": null,
+    "primaryKey": [
+      "id"
+    ],
+    "columns": [
+      {
+        "name": "id",
+        "title": "id",
+        "description": null,
+        "type": "integer",
+        "required": true,
+        "tags": {}
+      },
+      {
+        "name": "username",
+        "title": "username",
+        "description": null,
+        "type": "text",
+        "required": false,
+        "tags": {}
+      },
+      {
+        "name": "birthdate",
+        "title": "birthdate",
+        "description": null,
+        "type": "date",
+        "required": false,
+        "tags": {}
+      },
+      {
+        "name": "is_admin",
+        "title": "is_admin",
+        "description": null,
+        "type": "boolean",
+        "required": false,
+        "tags": {}
+      },
+      {
+        "name": "location",
+        "title": "location",
+        "description": null,
+        "type": "geometry(Point,4326)",
+        "required": false,
+        "tags": {}
+      }
+    ],
+    "foreignKeys": [],
+    "tags": {
+      "is_view": false
+    }
+  }
+]

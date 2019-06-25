@@ -6,7 +6,7 @@ const pool = require('./internal/pool');
 const psql = require('./internal/psql');
 
 const Catalog = require('./Catalog');
-const Table = require('./model/Table');
+const Table = require('./models/Table');
 
 /**
  * Helper to query database

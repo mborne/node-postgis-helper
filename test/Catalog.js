@@ -2,7 +2,7 @@ const expect = require("chai").expect;
 
 const Database = require('../src/Database');
 const Catalog = require('../src/Catalog');
-
+const fs = require('fs');
 
 /**
  * @var {Database}
@@ -54,8 +54,11 @@ describe("Catalog...", async function () {
 
         it("should return an expected result for catalog.getTables('sample')", async function () {
             let tables = await catalog.getTables('sample');
-            //console.log(JSON.stringify(tables,null,2));
-            const expected = require('./DATA/sample.json');
+            // fs.writeFileSync(
+            //     __dirname+'/expected/sample.json',
+            //     JSON.stringify(tables,null,2)
+            // );
+            const expected = require('./expected/sample.json');
             expect(tables).to.deep.equals(expected);
         });
 

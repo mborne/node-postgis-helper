@@ -10,13 +10,13 @@ Add hability to describe and retreive main table properties and generate model d
 
 * [x] `table.schema`
 * [x] `table.name`
-* [ ] `table.title` : display title for the table (default = name)
-* [ ] `table.description` : description of the table (default = null)
+* [x] `table.title` : display title for the table (default = name)
+* [x] `table.description` : description of the table (default = null)
 * [x] `table.primaryKey` : `string[]`
 * [x] `table.columns`
   * [x] `table.columns[*].name`
-  * [ ] `table.columns[*].title`
-  * [ ] `table.columns[*].description`
+  * [x] `table.columns[*].title`
+  * [x] `table.columns[*].description`
   * [x] `table.columns[*].type` : PostgreSQL type (ex : `geometry(Point,4326)`)
   * [x] `table.columns[*].required`
 * [x] `table.tags`
@@ -26,7 +26,6 @@ Add hability to describe and retreive main table properties and generate model d
     * [ ] `full_name` : original type name (ex : ̀ geometry(Point,4326)`)
     * [ ] `short_name` : short name (ex : `geometry`)
     * [ ] `params` : type params (ex : `["Point","4326"]`)
-
 
 Add converter to doc and other schema :
 

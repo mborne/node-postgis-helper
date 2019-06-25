@@ -3,8 +3,8 @@ const debug = require('debug')('postgis-helper');
 const _ = require('lodash');
 
 const Database = require('./Database');
-const Column   = require('./model/Column');
-const Table    = require('./model/Table');
+const Column   = require('./models/Column');
+const Table    = require('./models/Table');
 
 const queries = require('./queries');
 const parseForeignKey = require('./internal/parseForeignKey');
