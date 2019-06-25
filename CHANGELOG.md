@@ -12,30 +12,32 @@ Add hability to describe and retreive main table properties and generate model d
 * [x] `table.name`
 * [ ] `table.title` : display title for the table (default = name)
 * [ ] `table.description` : description of the table (default = null)
-* [x] `table.is_view` (TODO move to `tags`?)
-* [x] `table.primaryKey` : `string|string[]`
+* [x] `table.primaryKey` : `string[]`
 * [x] `table.columns`
   * [x] `table.columns[*].name`
   * [ ] `table.columns[*].title`
   * [ ] `table.columns[*].description`
   * [x] `table.columns[*].type` : PostgreSQL type (ex : `geometry(Point,4326)`)
-  * [x] `table.columns[*].is_nullable`
-  * [ ] `table.columns[*].references`
+  * [x] `table.columns[*].required`
+* [x] `table.tags`
+  * [x] `table.tags.is_view`
 
 * [ ] `helper.parseType(column.type)`
     * [ ] `full_name` : original type name (ex : ̀ geometry(Point,4326)`)
     * [ ] `short_name` : short name (ex : `geometry`)
     * [ ] `params` : type params (ex : `["Point","4326"]`)
 
-* [ ] `helper.toJsonType(column.type)` (relying on parseType)
 
 Add converter to doc and other schema :
 
 * [ ] `helper.toFlatTable(table)` : convert to CSV storable table
 * [ ] `helper.toMarkdown(table)` : convert to markdown
+
 * [ ] `helper.toJsonSchema(table)` : converts to JSON object definition (swagger)
+  * [ ] `helper.toJsonType(column.type)` (relying on parseType)
+
 * [ ] `helper.toGeoJsonSchema(table,options)` : convert to JSON object definition for GeoJSON rendering (`object` to `Feature` conversion)
-  * [ ] Converts to GeoJSON
+  * [ ] Converts `toJsonSchema` to GeoJSON
   * [ ] Support `options.geometryName` (with default behavior = GeoServer, first one or last one, don't remember)
 
 

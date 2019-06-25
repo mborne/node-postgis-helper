@@ -74,22 +74,22 @@ class Catalog {
         let rows = await this.database.query(
             queries.getQueryListTables(schemaName)
         );
-        let tables = rows.map(function(row){
+        let tables = await Promise.all(rows.map(async function(row){
+            let primaryKey  = await this.getPrimaryKey(row.schema,row.table);
+            let columns     = await this.getColumns(row.schema,row.table);
+            let foreignKeys = await this.getForeignKeys(row.schema,row.table);
+
             return new Table({
                 schema: row.schema,
                 name: row.table,
-                is_view: row.is_view
+                tags: {
+                    is_view: row.is_view
+                },
+                primaryKey: primaryKey,
+                columns: columns,
+                foreignKeys: foreignKeys
             });
-        });
-
-        /* retrieve table properties */
-        for ( var i in tables ){
-            let table = tables[i];
-            table.primaryKey  = await this.getPrimaryKey(table.schema,table.name);
-            table.columns     = await this.getColumns(table.schema,table.name);
-            table.foreignKeys = await this.getForeignKeys(table.schema,table.name);
-        }
-
+        }.bind(this)));
         return tables;
     }
 
@@ -104,7 +104,11 @@ class Catalog {
         let query = queries.getQueryListColumns(schemaName,tableName);
         return this.database.query(query).then(function(rows){
             return rows.map(row => {
-                return new Column(row);
+                return new Column({
+                    name: row.name,
+                    type: row.type,
+                    required: ! row.is_nullable
+                });
             });
         });
     }
@@ -120,14 +124,8 @@ class Catalog {
         let rows = await this.database.query(query);
         let columns = rows.map(function(row){
             return row.column;
-        })
-        if ( columns.length == 0 ){
-            return null;
-        }else if ( columns.length == 1 ){
-            return columns[0];
-        }else{
-            return columns;
-        }
+        });
+        return columns;
     }
 
     /**

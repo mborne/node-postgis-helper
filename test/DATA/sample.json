@@ -1,150 +1,158 @@
 [
     {
-        "schema": "sample",
-        "name": "building_h",
-        "primaryKey": [
-            "id",
-            "version"
-        ],
-        "is_view": false,
-        "columns": [
-            {
-                "name": "id",
-                "type": "uuid",
-                "is_nullable": false
-            },
-            {
-                "name": "version",
-                "type": "integer",
-                "is_nullable": false
-            },
-            {
-                "name": "deleted",
-                "type": "boolean",
-                "is_nullable": true
-            },
-            {
-                "name": "name",
-                "type": "text",
-                "is_nullable": false
-            },
-            {
-                "name": "owner_id",
-                "type": "integer",
-                "is_nullable": true
-            },
-            {
-                "name": "geometry",
-                "type": "geometry(Polygon,4326)",
-                "is_nullable": true
-            }
-        ],
-        "foreignKeys": [
-            {
-                "name": "building_h_owner_id_fkey",
-                "columns": [
-                    "owner_id"
-                ],
-                "target": {
-                    "schema": "sample",
-                    "name": "user",
-                    "columns": [
-                        "id"
-                    ]
-                }
-            }
-        ]
+      "schema": "sample",
+      "name": "building_h",
+      "primaryKey": [
+        "id",
+        "version"
+      ],
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "required": true
+        },
+        {
+          "name": "version",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "deleted",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "owner_id",
+          "type": "integer",
+          "required": false
+        },
+        {
+          "name": "geometry",
+          "type": "geometry(Polygon,4326)",
+          "required": false
+        }
+      ],
+      "foreignKeys": [
+        {
+          "name": "building_h_owner_id_fkey",
+          "columns": [
+            "owner_id"
+          ],
+          "target": {
+            "schema": "sample",
+            "name": "user",
+            "columns": [
+              "id"
+            ]
+          }
+        }
+      ],
+      "tags": {
+        "is_view": false
+      }
     },
     {
-        "schema": "sample",
-        "name": "building_owner",
-        "primaryKey": "id",
-        "is_view": false,
-        "columns": [
-            {
-                "name": "id",
-                "type": "integer",
-                "is_nullable": false
-            },
-            {
-                "name": "building_id",
-                "type": "uuid",
-                "is_nullable": true
-            },
-            {
-                "name": "building_version",
-                "type": "integer",
-                "is_nullable": true
-            },
-            {
-                "name": "owner_id",
-                "type": "integer",
-                "is_nullable": true
-            }
-        ],
-        "foreignKeys": [
-            {
-                "name": "building_owner_building_id_fkey",
-                "columns": [
-                    "building_id",
-                    "building_version"
-                ],
-                "target": {
-                    "schema": "sample",
-                    "name": "building_h",
-                    "columns": [
-                        "id",
-                        "version"
-                    ]
-                }
-            },
-            {
-                "name": "building_owner_owner_id_fkey",
-                "columns": [
-                    "owner_id"
-                ],
-                "target": {
-                    "schema": "sample",
-                    "name": "user",
-                    "columns": [
-                        "id"
-                    ]
-                }
-            }
-        ]
+      "schema": "sample",
+      "name": "building_owner",
+      "primaryKey": ["id"],
+      "columns": [
+        {
+          "name": "id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "building_id",
+          "type": "uuid",
+          "required": false
+        },
+        {
+          "name": "building_version",
+          "type": "integer",
+          "required": false
+        },
+        {
+          "name": "owner_id",
+          "type": "integer",
+          "required": false
+        }
+      ],
+      "foreignKeys": [
+        {
+          "name": "building_owner_building_id_fkey",
+          "columns": [
+            "building_id",
+            "building_version"
+          ],
+          "target": {
+            "schema": "sample",
+            "name": "building_h",
+            "columns": [
+              "id",
+              "version"
+            ]
+          }
+        },
+        {
+          "name": "building_owner_owner_id_fkey",
+          "columns": [
+            "owner_id"
+          ],
+          "target": {
+            "schema": "sample",
+            "name": "user",
+            "columns": [
+              "id"
+            ]
+          }
+        }
+      ],
+      "tags": {
+        "is_view": false
+      }
     },
     {
-        "schema": "sample",
-        "name": "user",
-        "primaryKey": "id",
-        "is_view": false,
-        "columns": [
-            {
-                "name": "id",
-                "type": "integer",
-                "is_nullable": false
-            },
-            {
-                "name": "username",
-                "type": "text",
-                "is_nullable": true
-            },
-            {
-                "name": "birthdate",
-                "type": "date",
-                "is_nullable": true
-            },
-            {
-                "name": "is_admin",
-                "type": "boolean",
-                "is_nullable": true
-            },
-            {
-                "name": "location",
-                "type": "geometry(Point,4326)",
-                "is_nullable": true
-            }
-        ],
-        "foreignKeys": []
+      "schema": "sample",
+      "name": "user",
+      "primaryKey": [
+        "id"
+      ],
+      "columns": [
+        {
+          "name": "id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "username",
+          "type": "text",
+          "required": false
+        },
+        {
+          "name": "birthdate",
+          "type": "date",
+          "required": false
+        },
+        {
+          "name": "is_admin",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "location",
+          "type": "geometry(Point,4326)",
+          "required": false
+        }
+      ],
+      "foreignKeys": [],
+      "tags": {
+        "is_view": false
+      }
     }
-]
+  ]
