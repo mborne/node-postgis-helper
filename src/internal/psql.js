@@ -26,7 +26,7 @@ var psql = function(options){
             });
         }
         var commandParts = [];
-        commandParts.push('psql');
+        commandParts.push('psql -v ON_ERROR_STOP=1');
         if ( options.quiet ){
             commandParts.push('--quiet');
         }

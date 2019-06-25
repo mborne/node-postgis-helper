@@ -2,8 +2,8 @@ const {QueryConfig} = require('pg');
 
 /**
  * Get SQL query to list columns for a given table
- * @param {string} schemaName 
- * @param {string} tableName 
+ * @param {string} schemaName
+ * @param {string} tableName
  * @returns {QueryConfig}
  */
 function getQueryListColumns(schemaName,tableName){
