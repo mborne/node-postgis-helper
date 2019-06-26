@@ -18,8 +18,7 @@ describe("Column...", function () {
                 "title": "my_column",
                 "description": null,
                 "type": "text",
-                "required": false,
-                "tags": {}
+                "required": false
             });
         });
 

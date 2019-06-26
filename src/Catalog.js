@@ -82,12 +82,10 @@ class Catalog {
             return new Table({
                 schema: row.schema,
                 name: row.table,
-                tags: {
-                    is_view: row.is_view
-                },
                 primaryKey: primaryKey,
                 columns: columns,
-                foreignKeys: foreignKeys
+                foreignKeys: foreignKeys,
+                is_view: row.is_view
             });
         }.bind(this)));
         return tables;

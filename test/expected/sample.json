@@ -14,48 +14,42 @@
         "title": "id",
         "description": null,
         "type": "uuid",
-        "required": true,
-        "tags": {}
+        "required": true
       },
       {
         "name": "version",
         "title": "version",
         "description": null,
         "type": "integer",
-        "required": true,
-        "tags": {}
+        "required": true
       },
       {
         "name": "deleted",
         "title": "deleted",
         "description": null,
         "type": "boolean",
-        "required": false,
-        "tags": {}
+        "required": false
       },
       {
         "name": "name",
         "title": "name",
         "description": null,
         "type": "text",
-        "required": true,
-        "tags": {}
+        "required": true
       },
       {
         "name": "owner_id",
         "title": "owner_id",
         "description": null,
         "type": "integer",
-        "required": false,
-        "tags": {}
+        "required": false
       },
       {
         "name": "geometry",
         "title": "geometry",
         "description": null,
         "type": "geometry(Polygon,4326)",
-        "required": false,
-        "tags": {}
+        "required": false
       }
     ],
     "foreignKeys": [
@@ -73,9 +67,7 @@
         }
       }
     ],
-    "tags": {
-      "is_view": false
-    }
+    "is_view": false
   },
   {
     "schema": "sample",
@@ -91,32 +83,28 @@
         "title": "id",
         "description": null,
         "type": "integer",
-        "required": true,
-        "tags": {}
+        "required": true
       },
       {
         "name": "building_id",
         "title": "building_id",
         "description": null,
         "type": "uuid",
-        "required": false,
-        "tags": {}
+        "required": false
       },
       {
         "name": "building_version",
         "title": "building_version",
         "description": null,
         "type": "integer",
-        "required": false,
-        "tags": {}
+        "required": false
       },
       {
         "name": "owner_id",
         "title": "owner_id",
         "description": null,
         "type": "integer",
-        "required": false,
-        "tags": {}
+        "required": false
       }
     ],
     "foreignKeys": [
@@ -149,9 +137,7 @@
         }
       }
     ],
-    "tags": {
-      "is_view": false
-    }
+    "is_view": false
   },
   {
     "schema": "sample",
@@ -167,45 +153,38 @@
         "title": "id",
         "description": null,
         "type": "integer",
-        "required": true,
-        "tags": {}
+        "required": true
       },
       {
         "name": "username",
         "title": "username",
         "description": null,
         "type": "text",
-        "required": false,
-        "tags": {}
+        "required": false
       },
       {
         "name": "birthdate",
         "title": "birthdate",
         "description": null,
         "type": "date",
-        "required": false,
-        "tags": {}
+        "required": false
       },
       {
         "name": "is_admin",
         "title": "is_admin",
         "description": null,
         "type": "boolean",
-        "required": false,
-        "tags": {}
+        "required": false
       },
       {
         "name": "location",
         "title": "location",
         "description": null,
         "type": "geometry(Point,4326)",
-        "required": false,
-        "tags": {}
+        "required": false
       }
     ],
     "foreignKeys": [],
-    "tags": {
-      "is_view": false
-    }
+    "is_view": false
   }
 ]

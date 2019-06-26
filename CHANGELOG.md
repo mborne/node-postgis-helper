@@ -19,13 +19,11 @@ Add hability to describe and retreive main table properties and generate model d
   * [x] `table.columns[*].description`
   * [x] `table.columns[*].type` : PostgreSQL type (ex : `geometry(Point,4326)`)
   * [x] `table.columns[*].required`
-* [x] `table.tags`
-  * [x] `table.tags.is_view`
+* [ ] Extensibility : custom properties are allowed on tables and columns
 
-* [ ] `helper.parseType(column.type)`
-    * [ ] `full_name` : original type name (ex : ̀ geometry(Point,4326)`)
-    * [ ] `short_name` : short name (ex : `geometry`)
-    * [ ] `params` : type params (ex : `["Point","4326"]`)
+* [x] `helper.parseType(column.type)`
+    * [x] `name` : short name (ex : `geometry`)
+    * [x] `params` : type params (ex : `["Point","4326"]`)
 
 Add converter to doc and other schema :
 
@@ -33,7 +31,7 @@ Add converter to doc and other schema :
 * [ ] `helper.toMarkdown(table)` : convert to markdown
 
 * [ ] `helper.toJsonSchema(table)` : converts to JSON object definition (swagger)
-  * [ ] `helper.toJsonType(column.type)` (relying on parseType)
+  * [ ] `helper.toJsonType(column.type)` (relying on parseType, finding mapping for [PostgreSQL type](https://www.postgresql.org/docs/11/datatype.html#DATATYPE-TABLE))
 
 * [ ] `helper.toGeoJsonSchema(table,options)` : convert to JSON object definition for GeoJSON rendering (`object` to `Feature` conversion)
   * [ ] Converts `toJsonSchema` to GeoJSON
