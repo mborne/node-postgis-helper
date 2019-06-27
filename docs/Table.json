@@ -1,0 +1,135 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Table",
+  "description": "Describe an SQL table",
+  "type": "object",
+  "required": [
+    "name",
+    "columns"
+  ],
+  "properties": {
+    "schema": {
+      "type": "string",
+      "title": "Schema",
+      "description": "The name of the schema containing the table"
+    },
+    "name": {
+      "type": "string",
+      "title": "Name",
+      "description": "The name of the table"
+    },
+    "title": {
+      "type": "string",
+      "title": "Title",
+      "description": "The display name of the table"
+    },
+    "description": {
+      "type": "string",
+      "title": "Description",
+      "description": "The description of the table"
+    },
+    "primaryKey": {
+      "type": "array",
+      "title": "Primary keys",
+      "description": "The column(s) identifying rows",
+      "items": {
+        "type": "string"
+      }
+    },
+    "foreignKeys": {
+      "type": "array",
+      "title": "Foreign keys",
+      "items": {
+        "$ref": "#/definitions/ForeignKey"
+      }
+    },
+    "columns": {
+      "type": "array",
+      "title": "Columns",
+      "description": "Columns definition",
+      "items": {
+        "$ref": "#/definitions/Column"
+      }
+    }
+  },
+  "definitions": {
+    "Column": {
+      "type": "object",
+      "title": "Column",
+      "required": [
+        "name",
+        "type"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name",
+          "description": "The name of the table"
+        },
+        "title": {
+          "type": "string",
+          "title": "Title",
+          "description": "The display name of the table"
+        },
+        "description": {
+          "type": "string",
+          "title": "Description",
+          "description": "The description of the table"
+        },
+        "type": {
+          "type": "string",
+          "title": "Type",
+          "description": "Native SQL type"
+        },
+        "required": {
+          "type": "boolean",
+          "title": "Required",
+          "description": "Indicates if value is required (opposite of nullable)",
+          "default": false
+        }
+      }
+    },
+    "ForeignKey": {
+      "type": "object",
+      "title": "Foreign key",
+      "description": "Describe a reference to another table",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name",
+          "description": "The name of the constraints"
+        },
+        "columns": {
+          "type": "array",
+          "title": "Column",
+          "description": "Source table columns",
+          "items": {
+            "type": "string"
+          }
+        },
+        "target": {
+          "type": "object",
+          "title": "Target",
+          "description": "The target of the foreign key",
+          "properties": {
+            "schema": {
+              "type": "string",
+              "title": "Target schema"
+            },
+            "name": {
+              "type": "string",
+              "title": "Target table"
+            },
+            "columns": {
+              "type": "array",
+              "title": "Target columns",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
