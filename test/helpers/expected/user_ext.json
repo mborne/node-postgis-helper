@@ -1,0 +1,56 @@
+{
+  "schema": "sample",
+  "name": "user_ext",
+  "title": "user_ext",
+  "description": null,
+  "columns": [
+    {
+      "name": "id",
+      "title": "Identifier",
+      "description": null,
+      "type": "serial",
+      "required": false
+    },
+    {
+      "name": "username",
+      "title": "Username",
+      "description": null,
+      "type": "text",
+      "required": false
+    },
+    {
+      "name": "birthdate",
+      "title": "Birthdate",
+      "description": null,
+      "type": "date",
+      "required": false
+    },
+    {
+      "name": "is_admin",
+      "title": "Administrator?",
+      "description": null,
+      "type": "boolean",
+      "required": false,
+      "default": false
+    },
+    {
+      "name": "location",
+      "title": "Location",
+      "description": null,
+      "type": "geometry(Point,4326)",
+      "required": false
+    },
+    {
+      "name": "extra",
+      "title": "Extra",
+      "description": null,
+      "type": "text",
+      "required": false
+    }
+  ],
+  "primaryKey": [
+    "id"
+  ],
+  "foreignKeys": [],
+  "parent": "user.json"
+}

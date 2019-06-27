@@ -27,9 +27,7 @@ Add hability to describe and retreive main table properties and generate model d
 
 Add converter to doc and other schema :
 
-* [ ] `helper.toFlatTable(table)` : convert to CSV storable table
-* [ ] `helper.toMarkdown(table)` : convert to markdown
-
+* [x] `helper.toMarkdown(table)` : convert to markdown
 * [ ] `helper.toJsonSchema(table)` : converts to JSON object definition (swagger)
   * [ ] `helper.toJsonType(column.type)` (relying on parseType, finding mapping for [PostgreSQL type](https://www.postgresql.org/docs/11/datatype.html#DATATYPE-TABLE))
 

@@ -46,14 +46,12 @@ class Table {
          * @property {string} content description
          */
         this.description = config.description ? config.description : null ;
-        /**
-         * @property {Column[]} columns
-         */
-        this.columns = config.columns ? config.columns : [] ;
+
         /**
          * @property {string[]} columns composing primary key
          */
         this.primaryKey = config.primaryKey ? config.primaryKey : [];
+        /* automatically translate string to string[] to avoid further logic */
         if ( typeof this.primaryKey === 'string' ){
             this.primaryKey = [this.primaryKey];
         }
@@ -61,6 +59,14 @@ class Table {
          * @property {ForeignKey[]} foreign keys
          */
         this.foreignKeys = config.foreignKeys ? config.foreignKeys : [] ;
+
+        /**
+         * @property {Column[]} columns
+         */
+        this.columns = config.columns ? config.columns : [] ;
+        this.columns = this.columns.map(column => {
+            return new Column(column);
+        });
 
         /* allows additional properties */
         Object.keys(config).forEach(function(propertyName){

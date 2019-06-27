@@ -1,0 +1,62 @@
+{
+  "schema": "adminexpress",
+  "name": "region",
+  "title": "region",
+  "description": null,
+  "primaryKey": [
+    "gid"
+  ],
+  "foreignKeys": [],
+  "columns": [
+    {
+      "name": "gid",
+      "title": "gid",
+      "description": null,
+      "type": "integer",
+      "required": true
+    },
+    {
+      "name": "id",
+      "title": "id",
+      "description": null,
+      "type": "text",
+      "required": false
+    },
+    {
+      "name": "nom_reg",
+      "title": "nom_reg",
+      "description": null,
+      "type": "text",
+      "required": false
+    },
+    {
+      "name": "nom_reg_m",
+      "title": "nom_reg_m",
+      "description": null,
+      "type": "text",
+      "required": false
+    },
+    {
+      "name": "insee_reg",
+      "title": "insee_reg",
+      "description": null,
+      "type": "text",
+      "required": false
+    },
+    {
+      "name": "chf_reg",
+      "title": "chf_reg",
+      "description": null,
+      "type": "text",
+      "required": false
+    },
+    {
+      "name": "geom",
+      "title": "geom",
+      "description": null,
+      "type": "geometry(MultiPolygon,4326)",
+      "required": false
+    }
+  ],
+  "is_view": false
+}

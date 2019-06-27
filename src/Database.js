@@ -66,10 +66,11 @@ class Database {
     /**
      * Execute query
      * @param {string|QueryConfig} query
-     * @param {any[]} values
+     * @param {any[]} [values]
      * @return {Object[]}
      */
     async query(query, values) {
+        //debug(query);
         const res = await this.client.query(query, values)
         return res.rows;
     }

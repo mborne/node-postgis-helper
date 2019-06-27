@@ -1,0 +1,55 @@
+{
+  "schema": "adminexpress",
+  "name": "chef_lieu",
+  "title": "chef_lieu",
+  "description": null,
+  "primaryKey": [
+    "gid"
+  ],
+  "foreignKeys": [],
+  "columns": [
+    {
+      "name": "gid",
+      "title": "gid",
+      "description": null,
+      "type": "integer",
+      "required": true
+    },
+    {
+      "name": "id",
+      "title": "id",
+      "description": null,
+      "type": "text",
+      "required": false
+    },
+    {
+      "name": "nom_chf",
+      "title": "nom_chf",
+      "description": null,
+      "type": "text",
+      "required": false
+    },
+    {
+      "name": "statut",
+      "title": "statut",
+      "description": null,
+      "type": "text",
+      "required": false
+    },
+    {
+      "name": "insee_com",
+      "title": "insee_com",
+      "description": null,
+      "type": "text",
+      "required": false
+    },
+    {
+      "name": "geom",
+      "title": "geom",
+      "description": null,
+      "type": "geometry(MultiPoint,4326)",
+      "required": false
+    }
+  ],
+  "is_view": false
+}

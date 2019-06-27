@@ -57,8 +57,9 @@ select
 	kcu.column_name,
 	kcu.ordinal_position
 from information_schema.table_constraints tc
-	JOIN information_schema.key_column_usage AS kcu
-	      ON tc.constraint_name = kcu.constraint_name
+	JOIN information_schema.key_column_usage AS kcu ON
+        tc.constraint_name = kcu.constraint_name
+    AND tc.constraint_schema = kcu.constraint_schema
 where tc.constraint_type = 'PRIMARY KEY'
   and tc.table_schema = 'sample'
   and tc.table_name = 'poi_h'

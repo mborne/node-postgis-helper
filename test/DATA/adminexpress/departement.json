@@ -1,0 +1,69 @@
+{
+  "schema": "adminexpress",
+  "name": "departement",
+  "title": "departement",
+  "description": null,
+  "primaryKey": [
+    "gid"
+  ],
+  "foreignKeys": [],
+  "columns": [
+    {
+      "name": "gid",
+      "title": "gid",
+      "description": null,
+      "type": "integer",
+      "required": true
+    },
+    {
+      "name": "id",
+      "title": "id",
+      "description": null,
+      "type": "text",
+      "required": false
+    },
+    {
+      "name": "nom_dep",
+      "title": "nom_dep",
+      "description": null,
+      "type": "text",
+      "required": false
+    },
+    {
+      "name": "nom_dep_m",
+      "title": "nom_dep_m",
+      "description": null,
+      "type": "text",
+      "required": false
+    },
+    {
+      "name": "insee_dep",
+      "title": "insee_dep",
+      "description": null,
+      "type": "text",
+      "required": false
+    },
+    {
+      "name": "insee_reg",
+      "title": "insee_reg",
+      "description": null,
+      "type": "text",
+      "required": false
+    },
+    {
+      "name": "chf_dep",
+      "title": "chf_dep",
+      "description": null,
+      "type": "text",
+      "required": false
+    },
+    {
+      "name": "geom",
+      "title": "geom",
+      "description": null,
+      "type": "geometry(MultiPolygon,4326)",
+      "required": false
+    }
+  ],
+  "is_view": false
+}

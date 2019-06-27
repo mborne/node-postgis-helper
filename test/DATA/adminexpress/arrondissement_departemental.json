@@ -1,0 +1,76 @@
+{
+  "schema": "adminexpress",
+  "name": "arrondissement_departemental",
+  "title": "arrondissement_departemental",
+  "description": null,
+  "primaryKey": [
+    "gid"
+  ],
+  "foreignKeys": [],
+  "columns": [
+    {
+      "name": "gid",
+      "title": "gid",
+      "description": null,
+      "type": "integer",
+      "required": true
+    },
+    {
+      "name": "id",
+      "title": "id",
+      "description": null,
+      "type": "text",
+      "required": false
+    },
+    {
+      "name": "nom_arr",
+      "title": "nom_arr",
+      "description": null,
+      "type": "text",
+      "required": false
+    },
+    {
+      "name": "nom_arr_m",
+      "title": "nom_arr_m",
+      "description": null,
+      "type": "text",
+      "required": false
+    },
+    {
+      "name": "insee_arr",
+      "title": "insee_arr",
+      "description": null,
+      "type": "text",
+      "required": false
+    },
+    {
+      "name": "insee_dep",
+      "title": "insee_dep",
+      "description": null,
+      "type": "text",
+      "required": false
+    },
+    {
+      "name": "insee_reg",
+      "title": "insee_reg",
+      "description": null,
+      "type": "text",
+      "required": false
+    },
+    {
+      "name": "chf_arr",
+      "title": "chf_arr",
+      "description": null,
+      "type": "text",
+      "required": false
+    },
+    {
+      "name": "geom",
+      "title": "geom",
+      "description": null,
+      "type": "geometry(MultiPolygon,4326)",
+      "required": false
+    }
+  ],
+  "is_view": false
+}

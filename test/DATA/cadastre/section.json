@@ -1,0 +1,62 @@
+{
+  "schema": "cadastre",
+  "name": "section",
+  "title": "section",
+  "description": null,
+  "primaryKey": [
+    "id"
+  ],
+  "foreignKeys": [],
+  "columns": [
+    {
+      "name": "id",
+      "title": "id",
+      "description": null,
+      "type": "text",
+      "required": true
+    },
+    {
+      "name": "commune",
+      "title": "commune",
+      "description": null,
+      "type": "character varying",
+      "required": false
+    },
+    {
+      "name": "prefixe",
+      "title": "prefixe",
+      "description": null,
+      "type": "character varying",
+      "required": false
+    },
+    {
+      "name": "code",
+      "title": "code",
+      "description": null,
+      "type": "character varying",
+      "required": false
+    },
+    {
+      "name": "created",
+      "title": "created",
+      "description": null,
+      "type": "date",
+      "required": false
+    },
+    {
+      "name": "updated",
+      "title": "updated",
+      "description": null,
+      "type": "date",
+      "required": false
+    },
+    {
+      "name": "geom",
+      "title": "geom",
+      "description": null,
+      "type": "geometry(MultiPolygon,4326)",
+      "required": false
+    }
+  ],
+  "is_view": false
+}

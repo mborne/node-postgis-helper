@@ -1,10 +1,15 @@
 module.exports = {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Table",
-    "description": "Describe an SQL table",
+    "description": "JSON description for SQL Table",
     "type": "object",
     "required": ["name", "columns"],
     "properties": {
+        "parent": {
+            "type": "string",
+            "title": "Parent table",
+            "description": "Reference to parent table"
+        },
         "schema": {
             "type": "string",
             "title": "Schema",

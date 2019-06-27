@@ -1,6 +1,7 @@
 module.exports = {
     "type": "object",
     "title": "Column",
+    "description": "JSON description for SQL column",
     "required": ["name", "type"],
     "properties": {
         "name": {

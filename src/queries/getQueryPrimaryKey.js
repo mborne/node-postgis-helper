@@ -14,8 +14,9 @@ select
 	tc.constraint_name as table,
 	kcu.column_name as column
 from information_schema.table_constraints tc
-	JOIN information_schema.key_column_usage AS kcu
-	      ON tc.constraint_name = kcu.constraint_name
+    JOIN information_schema.key_column_usage AS kcu ON
+            tc.constraint_name = kcu.constraint_name
+        AND tc.constraint_schema = kcu.constraint_schema
 where tc.constraint_type = 'PRIMARY KEY'
   and tc.table_schema = $1
   and tc.table_name = $2

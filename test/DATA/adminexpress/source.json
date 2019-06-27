@@ -1,0 +1,48 @@
+{
+  "schema": "adminexpress",
+  "name": "source",
+  "title": "source",
+  "description": null,
+  "primaryKey": [
+    "name"
+  ],
+  "foreignKeys": [],
+  "columns": [
+    {
+      "name": "name",
+      "title": "name",
+      "description": null,
+      "type": "text",
+      "required": true
+    },
+    {
+      "name": "description",
+      "title": "description",
+      "description": null,
+      "type": "text",
+      "required": false
+    },
+    {
+      "name": "homepage",
+      "title": "homepage",
+      "description": null,
+      "type": "text",
+      "required": false
+    },
+    {
+      "name": "url",
+      "title": "url",
+      "description": null,
+      "type": "text",
+      "required": false
+    },
+    {
+      "name": "version",
+      "title": "version",
+      "description": null,
+      "type": "text",
+      "required": false
+    }
+  ],
+  "is_view": false
+}
