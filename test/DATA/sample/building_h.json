@@ -1,0 +1,70 @@
+{
+  "schema": "sample",
+  "name": "building_h",
+  "title": "building_h",
+  "description": null,
+  "primaryKey": [
+    "id",
+    "version"
+  ],
+  "foreignKeys": [
+    {
+      "name": "building_h_owner_id_fkey",
+      "columns": [
+        "owner_id"
+      ],
+      "target": {
+        "schema": "sample",
+        "name": "user",
+        "columns": [
+          "id"
+        ]
+      }
+    }
+  ],
+  "columns": [
+    {
+      "name": "id",
+      "title": "id",
+      "description": null,
+      "type": "uuid",
+      "required": true
+    },
+    {
+      "name": "version",
+      "title": "version",
+      "description": null,
+      "type": "integer",
+      "required": true
+    },
+    {
+      "name": "deleted",
+      "title": "deleted",
+      "description": null,
+      "type": "boolean",
+      "required": false
+    },
+    {
+      "name": "name",
+      "title": "name",
+      "description": null,
+      "type": "text",
+      "required": true
+    },
+    {
+      "name": "owner_id",
+      "title": "owner_id",
+      "description": null,
+      "type": "integer",
+      "required": false
+    },
+    {
+      "name": "geometry",
+      "title": "geometry",
+      "description": null,
+      "type": "geometry(Polygon,4326)",
+      "required": false
+    }
+  ],
+  "is_view": false
+}

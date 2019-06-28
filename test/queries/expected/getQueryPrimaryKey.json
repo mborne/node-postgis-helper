@@ -1,5 +1,5 @@
 {
-    "text": "select\n\ttc.constraint_schema as schema,\n\ttc.constraint_name as table,\n\tkcu.column_name as column\nfrom information_schema.table_constraints tc\n\tJOIN information_schema.key_column_usage AS kcu\n\t      ON tc.constraint_name = kcu.constraint_name\nwhere tc.constraint_type = 'PRIMARY KEY'\n  and tc.table_schema = $1\n  and tc.table_name = $2\norder by kcu.ordinal_position",
+    "text": "select\n\ttc.constraint_schema as schema,\n\ttc.constraint_name as table,\n\tkcu.column_name as column\nfrom information_schema.table_constraints tc\n    JOIN information_schema.key_column_usage AS kcu ON\n            tc.constraint_name = kcu.constraint_name\n        AND tc.constraint_schema = kcu.constraint_schema\nwhere tc.constraint_type = 'PRIMARY KEY'\n  and tc.table_schema = $1\n  and tc.table_name = $2\norder by kcu.ordinal_position",
     "values": [
         "sample",
         "user"

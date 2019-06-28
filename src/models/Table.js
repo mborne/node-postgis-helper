@@ -1,18 +1,5 @@
 const Column = require('./Column');
-
-/**
- *
- * Model describing a ForeignKey for a given table
- *
- * @typedef {object} ForeignKey
- * @property {string} name foreign key name
- * @property {string[]} columns source columns
- * @property {object} target
- * @property {string} target.schema target table schema
- * @property {string} target.name target table name
- * @property {string[]} target.columns target columns
- */
-
+const ForeignKey = require('./ForeignKey');
 
 /**
  * Model describing an SQL table

@@ -1,4 +1,6 @@
 module.exports = {
     Column: require('./Column'),
-    Table: require('./Table')
+    Table: require('./Table'),
+    ForeignKey: require('./ForeignKey'),
+    ForeignKeyTarget: require('./ForeignKeyTarget')
 };
