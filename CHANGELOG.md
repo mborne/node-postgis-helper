@@ -8,18 +8,26 @@ Init project to stop duplicating code in nodejs projects (data loaders, express 
 
 Add hability to describe and retreive main table properties and generate model doc :
 
-* [x] `table.schema`
-* [x] `table.name`
-* [x] `table.title` : display title for the table (default = name)
-* [x] `table.description` : description of the table (default = null)
-* [x] `table.primaryKey` : `string[]`
-* [x] `table.columns`
-  * [x] `table.columns[*].name`
-  * [x] `table.columns[*].title`
-  * [x] `table.columns[*].description`
-  * [x] `table.columns[*].type` : PostgreSQL type (ex : `geometry(Point,4326)`)
-  * [x] `table.columns[*].required`
-* [ ] Extensibility : custom properties are allowed on tables and columns
+* [ ] Schema : a group of tables
+  * [ ] `schema.name`
+  * [ ] `schema.title`
+  * [ ] `schema.description`
+  * [ ] `schema.version`
+  * [ ] `schema.tables` : Relative path referencing tables (`string[]`)
+
+* [x] Table
+    * [x] `table.schema` (to be removed : `catalog.getSchema(schemaName)`)
+    * [x] `table.name`
+    * [x] `table.title` : display title for the table (default = name)
+    * [x] `table.description` : description of the table (default = null)
+    * [x] `table.primaryKey` : `string[]`
+    * [x] `table.columns`
+    * [x] `table.columns[*].name`
+    * [x] `table.columns[*].title`
+    * [x] `table.columns[*].description`
+    * [x] `table.columns[*].type` : PostgreSQL type (ex : `geometry(Point,4326)`)
+    * [x] `table.columns[*].required`
+    * [ ] Extensibility : custom properties are allowed on tables and columns
 
 * [x] `helper.parseType(column.type)`
     * [x] `name` : short name (ex : `geometry`)
