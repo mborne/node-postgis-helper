@@ -5,7 +5,7 @@ const Table = require('../models/Table');
  * Returns CREATE TABLE statements
  * @param {Table} table
  */
-function getSqlCreateTable(table){
+function getSqlCreateTable(table,schemaName){
     let sqlColumns = [];
     table.columns.forEach(function(column){
         let sqlColumn = `    ${column.name} ${column.type}`;
@@ -16,7 +16,7 @@ function getSqlCreateTable(table){
     }
 
     let sqlParts = [];
-    sqlParts.push(`CREATE TABLE ${table.schema}.${table.name} (`);
+    sqlParts.push(`CREATE TABLE ${schemaName}.${table.name} (`);
     sqlParts.push(sqlColumns.join(",\r\n"));
     sqlParts.push(');');
     return sqlParts.join('\r\n');
@@ -28,12 +28,14 @@ function getSqlCreateTable(table){
  * @param {Schema} schema
  */
 function toSQL(schema){
+    let schemaName = schema.name;
+
     let parts = [];
-    parts.push('CREATE SCHEMA IF NOT EXISTS '+schema.name+';');
+    parts.push('CREATE SCHEMA IF NOT EXISTS '+schemaName+';');
     parts.push('');
     schema.tables.forEach(function(table){
         parts.push('-- '+table.title);
-        parts.push(getSqlCreateTable(table));
+        parts.push(getSqlCreateTable(table,schemaName));
         parts.push('');
     });
     return parts.join("\n");

@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SQL schema",
+  "description": "JSON description for SQL schema",
+  "type": "object",
+  "required": [
+    "name",
+    "tables"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "title": "Name",
+      "description": "The name of the schema"
+    },
+    "title": {
+      "type": "string",
+      "title": "Title",
+      "description": "The display name of the schema"
+    },
+    "description": {
+      "type": "string",
+      "title": "Description",
+      "description": "The description of the schema"
+    },
+    "tables": {
+      "type": "array",
+      "title": "Tables",
+      "items": {
+        "$ref": "#/definitions/TableRef"
+      }
+    }
+  },
+  "definitions": {
+    "TableRef": {
+      "type": "object",
+      "title": "Table",
+      "properties": {
+        "$ref": {
+          "type": "string",
+          "title": "URL of the table"
+        }
+      }
+    }
+  }
+}

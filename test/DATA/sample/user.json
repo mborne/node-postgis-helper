@@ -1,5 +1,4 @@
 {
-    "schema": "sample",
     "name": "user",
     "primaryKey": "id",
     "columns": [

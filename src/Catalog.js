@@ -79,7 +79,6 @@ class Catalog {
             let foreignKeys = await this.getForeignKeys(row.schema,row.table);
 
             return new Table({
-                schema: row.schema,
                 name: row.table,
                 primaryKey: primaryKey,
                 columns: columns,

@@ -8,7 +8,6 @@ class Table {
 
     /**
      * @param {object} config
-     * @param {string} config.schema
      * @param {string} config.name
      * @param {Column[]} config.columns
      * @param {string} [config.title]
@@ -17,10 +16,6 @@ class Table {
      * @param {ForeignKey[]} config.foreignKeys
      */
     constructor(config){
-        /**
-         * @property {string} schema name
-         */
-        this.schema = config.schema ? config.schema : null ;
         /**
          * @property {string} table name
          */

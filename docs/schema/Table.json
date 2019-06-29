@@ -9,14 +9,7 @@
   ],
   "properties": {
     "parent": {
-      "type": "string",
-      "title": "Parent table",
-      "description": "Reference to parent table"
-    },
-    "schema": {
-      "type": "string",
-      "title": "Schema",
-      "description": "The name of the schema containing the table"
+      "$ref": "#/definitions/ParentRef"
     },
     "name": {
       "type": "string",

@@ -4,7 +4,6 @@
   "description": null,
   "tables": [
     {
-      "schema": "sample",
       "name": "building_h",
       "title": "building_h",
       "description": null,
@@ -74,7 +73,6 @@
       "is_view": false
     },
     {
-      "schema": "sample",
       "name": "building_owner",
       "title": "building_owner",
       "description": null,
@@ -144,7 +142,6 @@
       "is_view": false
     },
     {
-      "schema": "sample",
       "name": "user",
       "title": "user",
       "description": null,
