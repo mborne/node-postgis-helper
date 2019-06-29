@@ -7,5 +7,5 @@ if ( ! fs.existsSync(docsDir) ){
     fs.mkdirSync(docsDir);
 }
 
-const schemaTable = require('../src/schema/Table');
+const schemaTable = require('../src/docs/Table');
 fs.writeFileSync(docsDir+'/Table.json',JSON.stringify(schemaTable,null,2));
