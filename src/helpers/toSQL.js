@@ -1,11 +1,11 @@
+const Schema = require('../models/Schema');
 const Table = require('../models/Table');
 
 /**
- * Get SQL statements to CREATE TABLE according to
- * model
+ * Returns CREATE TABLE statements
  * @param {Table} table
  */
-function toCreateTable(table){
+function getSqlCreateTable(table){
     let sqlColumns = [];
     table.columns.forEach(function(column){
         let sqlColumn = `    ${column.name} ${column.type}`;
@@ -22,4 +22,21 @@ function toCreateTable(table){
     return sqlParts.join('\r\n');
 }
 
-module.exports = toCreateTable;
+/**
+ * Get SQL statements to CREATE TABLE according to
+ * model
+ * @param {Schema} schema
+ */
+function toSQL(schema){
+    let parts = [];
+    parts.push('CREATE SCHEMA IF NOT EXISTS '+schema.name+';');
+    parts.push('');
+    schema.tables.forEach(function(table){
+        parts.push('-- '+table.title);
+        parts.push(getSqlCreateTable(table));
+        parts.push('');
+    });
+    return parts.join("\n");
+}
+
+module.exports = toSQL;

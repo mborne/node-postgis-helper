@@ -6,6 +6,6 @@ module.exports = {
     readJsonSchema: require('./readJsonSchema'),
 
     /* writers */
-    toCreateTable: require('./toCreateTable'),
+    toSQL: require('./toSQL'),
     toMarkdown: require('./toMarkdown')
 };

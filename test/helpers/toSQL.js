@@ -4,15 +4,15 @@ const fs = require('fs');
 const path = require('path');
 
 const helpers = require('../../src/helpers')
-const Table = require('../../src/models/Table');
 
-describe("helpers.toMarkdown(schema)...", async function () {
 
-    it("should provide an expected result for 'adminexpress.json'", async function () {
+describe("helpers.toSQL(schema)...", async function () {
+
+    it("should provide an expected result for 'adminexpress'", async function () {
         let schemaPath = path.resolve(__dirname,'../DATA/adminexpress.json');
         let schema = await helpers.readJsonSchema(schemaPath);
-        let result = helpers.toMarkdown(schema);
-        let expectedPath = __dirname+'/expected/adminexpress.md';
+        let result = helpers.toSQL(schema);
+        let expectedPath = __dirname+'/expected/adminexpress.schema.sql';
         //fs.writeFileSync(expectedPath,result);
         let expected = fs.readFileSync(
             expectedPath,

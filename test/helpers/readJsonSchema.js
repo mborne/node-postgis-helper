@@ -8,10 +8,13 @@ const helpers = require('../../src/helpers')
 describe("helpers.readJsonSchema(url)...", async function () {
 
     it("should provide an expected result for 'sample.json'", async function () {
-        let schema = await helpers.readJsonSchema(
+        let result = await helpers.readJsonSchema(
             path.resolve(__dirname,'../DATA/sample.json')
         );
-        console.log(JSON.stringify(schema,null,2));
+        let expectedPath = __dirname+'/expected/sample.json';
+        //fs.writeFileSync(expectedPath,JSON.stringify(result,null,2));
+        let expected = require(expectedPath);
+        expect(result).to.deep.equals(expected);
     });
 
 })
