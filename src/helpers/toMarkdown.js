@@ -1,45 +1,54 @@
 const toMdTable = require('markdown-table');
 
 /**
- * Conversion des tables en markdown
+ * Convert a given schema to markdown
  *
- * @param {Table} table
+ * @param {Schema} schema
  * @return {string}
  */
-function toMarkdown(table){
+function toMarkdown(schema){
     let parts = [];
 
-    parts.push("## "+table.name);
+    parts.push(`# ${schema.name}`);
     parts.push('');
 
-    if ( table.description != null ){
-        parts.push(table.description);
+    if ( schema.description != null ){
+        parts.push(schema.description);
         parts.push('');
     }
 
-    let mdRows = [];
-    mdRows.push([
-        "Name",
-        "Title",
-        "Type",
-        "Required",
-        "Description"
-    ]);
+    schema.tables.forEach(function(table){
+        parts.push("## "+table.name);
+        parts.push('');
 
-    table.columns.forEach(function(column){
-        mdRows.push([
-            column.name,
-            column.title,
-            column.type,
-            column.required ? 'Y' : 'N',
-            column.description
+        if ( table.description != null ){
+            parts.push(table.description);
+            parts.push('');
+        }
+
+        let columnRows = [];
+        columnRows.push([
+            "Name",
+            "Type",
+            "Required",
+            "Description"
         ]);
+
+        table.columns.forEach(function(column){
+            columnRows.push([
+                column.name,
+                '`'+column.type+'`',
+                column.required ? 'Y' : 'N',
+                column.description
+            ]);
+        });
+
+        parts.push(toMdTable(columnRows));
+        parts.push('');
+
     });
 
-    parts.push(toMdTable(mdRows));
-    parts.push('');
-
-    return parts.join("\r\n");
+    return parts.join("\n");
 }
 
 module.exports = toMarkdown;

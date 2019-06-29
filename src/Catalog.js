@@ -3,6 +3,8 @@ const debug = require('debug')('postgis-helper');
 const _ = require('lodash');
 
 const Database = require('./Database');
+
+const Schema   = require('./models/Schema');
 const Column   = require('./models/Column');
 const Table    = require('./models/Table');
 
@@ -63,6 +65,7 @@ class Catalog {
      * Get description for a given schema
      *
      * @param {string} schemaName filter according to a given schema
+     * @return {Schema}
      */
     async getSchema(schemaName){
         debug(`Catalog.getSchema(${schemaName})`);
@@ -84,7 +87,11 @@ class Catalog {
                 is_view: row.is_view
             });
         }.bind(this)));
-        return tables;
+
+        return new Schema({
+            name: schemaName,
+            tables: tables
+        });
     }
 
     /**

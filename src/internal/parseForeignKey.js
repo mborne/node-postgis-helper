@@ -1,3 +1,6 @@
+const ForeignKey       = require('../models/ForeignKey');
+const ForeignKeyTarget = require('../models/ForeignKeyTarget');
+
 function parseColumnsDef(def){
     return def.trim()
         .replace('(','')
@@ -24,15 +27,15 @@ function parseForeignKey(row){
     let targetTableParts = targetTableDef.split('.').map(item => {return item.replace(/"/g,'')});
     let targetColumnsDef = parts[1].substr( parts[1].indexOf('(') ).trim();
 
-    return {
+    return new ForeignKey({
         name: row.name,
         columns: parseColumnsDef(sourceColumnsDef),
-        target: {
+        target: new ForeignKeyTarget({
             schema: targetTableParts[0],
             name: targetTableParts[1],
             columns: parseColumnsDef( targetColumnsDef )
-        }
-    };
+        })
+    });
 }
 
 module.exports = parseForeignKey;

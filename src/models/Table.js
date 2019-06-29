@@ -51,9 +51,6 @@ class Table {
          * @property {Column[]} columns
          */
         this.columns = config.columns ? config.columns : [] ;
-        this.columns = this.columns.map(column => {
-            return new Column(column);
-        });
 
         /* allows additional properties */
         Object.keys(config).forEach(function(propertyName){

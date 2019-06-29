@@ -8,10 +8,11 @@ const Table = require('../../src/models/Table');
 
 describe("helpers.toMarkdown(table)...", async function () {
 
-    it("should provide an expected result for 'user'", async function () {
-        let user = await helpers.readJsonTable(path.resolve(__dirname,'../DATA/sample/user.json'));
-        let result = helpers.toMarkdown(user);
-        let expectedPath = __dirname+'/expected/user.md';
+    it("should provide an expected result for 'adminexpress.json'", async function () {
+        let schemaPath = path.resolve(__dirname,'../DATA/adminexpress.json');
+        let schema = await helpers.readJsonSchema(schemaPath);
+        let result = helpers.toMarkdown(schema);
+        let expectedPath = __dirname+'/expected/adminexpress.md';
         //fs.writeFileSync(expectedPath,result);
         let expected = fs.readFileSync(
             expectedPath,

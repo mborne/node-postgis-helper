@@ -1,3 +1,4 @@
+const ForeignKeyTarget = require('./ForeignKeyTarget');
 
 /**
  * Model describing a ForeignKey for a given table
@@ -20,7 +21,9 @@ class ForeignKey {
         /**
          * @property {ForeignKeyTarget} target columns in another table
          */
-        this.target = new ForeignKeyTarget(config.target);
+        this.target = config.target ? config.target : null;
     }
 
 }
+
+module.exports = ForeignKey;
