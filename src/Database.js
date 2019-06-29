@@ -106,8 +106,8 @@ class Database {
      * @param {string} schemaName
      * @return {Table[]}
      */
-    async getTables(schemaName){
-        return this.catalog.getTables(schemaName);
+    async getSchema(schemaName){
+        return this.catalog.getSchema(schemaName);
     }
 
     /**

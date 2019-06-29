@@ -50,10 +50,10 @@ describe("Catalog...", async function () {
     });
 
 
-    describe("Catalog.getTables(schemaName)...", async function () {
+    describe("Catalog.getSchema(schemaName)...", async function () {
 
-        it("should return an expected result for catalog.getTables('sample')", async function () {
-            let tables = await catalog.getTables('sample');
+        it("should return an expected result for catalog.getSchema('sample')", async function () {
+            let tables = await catalog.getSchema('sample');
             // fs.writeFileSync(
             //     __dirname+'/expected/sample.json',
             //     JSON.stringify(tables,null,2)

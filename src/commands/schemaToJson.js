@@ -25,7 +25,7 @@ async function schemaToJson(schemaName,outputDir){
     /*
      * writes tables as {outputDir}/{table.name}.json files
      */
-    let tables = await database.getTables(schemaName);
+    let tables = await database.getSchema(schemaName);
     tables.forEach(function(table){
         let tablePath = path.resolve(outputDir,`./${table.name}.json`);
         fs.writeFileSync(tablePath,JSON.stringify(table,null,2));

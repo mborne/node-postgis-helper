@@ -64,8 +64,8 @@ class Catalog {
      *
      * @param {string} schemaName filter according to a given schema
      */
-    async getTables(schemaName){
-        debug(`Catalog.getTables(${schemaName})`);
+    async getSchema(schemaName){
+        debug(`Catalog.getSchema(${schemaName})`);
 
         let rows = await this.database.query(
             queries.getQueryListTables(schemaName)
