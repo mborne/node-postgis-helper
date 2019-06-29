@@ -60,16 +60,12 @@ class Catalog {
     }
 
     /**
-     * Get table for a given schema
+     * Get description for a given schema
      *
      * @param {string} schemaName filter according to a given schema
      */
-    async getTables(schemaName,options){
-        debug(`Catalog.getTables(${JSON.stringify(options)})`);
-
-        options = _.defaults({
-            withColumns: true
-        },options);
+    async getTables(schemaName){
+        debug(`Catalog.getTables(${schemaName})`);
 
         let rows = await this.database.query(
             queries.getQueryListTables(schemaName)

@@ -1,0 +1,17 @@
+{
+  "name": "sample",
+  "tables": [
+    {
+      "$ref": "sample/user.json"
+    },
+    {
+      "$ref": "sample/user_ext.json"
+    },
+    {
+      "$ref": "sample/building_h.json"
+    },
+    {
+      "$ref": "sample/building_owner.json"
+    }
+  ]
+}

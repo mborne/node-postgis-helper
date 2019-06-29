@@ -9,7 +9,7 @@ const Table = require('../../src/models/Table');
 describe("helpers.toMarkdown(table)...", async function () {
 
     it("should provide an expected result for 'user'", async function () {
-        let user = await helpers.readJsonTable(path.resolve(__dirname,'../DATA/user.json'));
+        let user = await helpers.readJsonTable(path.resolve(__dirname,'../DATA/sample/user.json'));
         let result = helpers.toMarkdown(user);
         let expectedPath = __dirname+'/expected/user.md';
         //fs.writeFileSync(expectedPath,result);

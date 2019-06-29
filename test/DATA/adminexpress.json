@@ -1,0 +1,23 @@
+{
+  "name": "adminexpress",
+  "tables": [
+    {
+      "$ref": "adminexpress/region.json"
+    },
+    {
+      "$ref": "adminexpress/departement.json"
+    },
+    {
+      "$ref": "adminexpress/epci.json"
+    },
+    {
+      "$ref": "adminexpress/arrondissement_departemental.json"
+    },
+    {
+      "$ref": "adminexpress/commune.json"
+    },
+    {
+      "$ref": "adminexpress/chef_lieu.json"
+    }
+  ]
+}

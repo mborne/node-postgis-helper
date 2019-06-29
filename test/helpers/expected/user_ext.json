@@ -51,6 +51,5 @@
   "primaryKey": [
     "id"
   ],
-  "foreignKeys": [],
-  "parent": "user.json"
+  "foreignKeys": []
 }

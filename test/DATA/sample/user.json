@@ -1,48 +1,33 @@
 {
-  "schema": "sample",
-  "name": "user",
-  "title": "user",
-  "description": null,
-  "primaryKey": [
-    "id"
-  ],
-  "foreignKeys": [],
-  "columns": [
-    {
-      "name": "id",
-      "title": "id",
-      "description": null,
-      "type": "integer",
-      "required": true
-    },
-    {
-      "name": "username",
-      "title": "username",
-      "description": null,
-      "type": "text",
-      "required": false
-    },
-    {
-      "name": "birthdate",
-      "title": "birthdate",
-      "description": null,
-      "type": "date",
-      "required": false
-    },
-    {
-      "name": "is_admin",
-      "title": "is_admin",
-      "description": null,
-      "type": "boolean",
-      "required": false
-    },
-    {
-      "name": "location",
-      "title": "location",
-      "description": null,
-      "type": "geometry(Point,4326)",
-      "required": false
-    }
-  ],
-  "is_view": false
+    "schema": "sample",
+    "name": "user",
+    "primaryKey": "id",
+    "columns": [
+        {
+            "name": "id",
+            "type": "serial",
+            "title": "Identifier"
+        },
+        {
+            "name": "username",
+            "type": "text",
+            "title": "Username"
+        },
+        {
+            "name": "birthdate",
+            "type": "date",
+            "title": "Birthdate"
+        },
+        {
+            "name": "is_admin",
+            "type": "boolean",
+            "title": "Administrator?",
+            "default": false
+        },
+        {
+            "name": "location",
+            "type": "geometry(Point,4326)",
+            "title": "Location"
+        }
+    ]
 }

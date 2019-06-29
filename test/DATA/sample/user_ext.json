@@ -1,7 +1,9 @@
 {
     "schema": "sample",
     "name": "user_ext",
-    "parent": "user.json",
+    "parent": {
+        "$ref": "user.json"
+    },
     "columns": [
         {
             "name": "extra",

@@ -10,7 +10,7 @@ describe("helpers.readJsonTable(url)...", async function () {
 
     it("should provide an expected result for 'user.json'", async function () {
         let result = await helpers.readJsonTable(
-            path.resolve(__dirname,'../DATA/user.json')
+            path.resolve(__dirname,'../DATA/sample/user.json')
         );
         let expectedPath = __dirname+'/expected/user.json';
         //fs.writeFileSync(expectedPath,JSON.stringify(result,null,2));
@@ -20,7 +20,7 @@ describe("helpers.readJsonTable(url)...", async function () {
 
     it("should provide an expected result for 'user_ext.json'", async function () {
         let result = await helpers.readJsonTable(
-            path.resolve(__dirname,'../DATA/user_ext.json')
+            path.resolve(__dirname,'../DATA/sample/user_ext.json')
         );
         let expectedPath = __dirname+'/expected/user_ext.json';
         //fs.writeFileSync(expectedPath,JSON.stringify(result,null,2));

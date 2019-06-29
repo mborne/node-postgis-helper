@@ -22,11 +22,27 @@ async function schemaToJson(schemaName,outputDir){
         shell.mkdir('-p',outputDir);
     }
 
+    /*
+     * writes tables as {outputDir}/{table.name}.json files
+     */
     let tables = await database.getTables(schemaName);
     tables.forEach(function(table){
-        const tablePath = path.resolve(outputDir,`./${table.name}.json`);
+        let tablePath = path.resolve(outputDir,`./${table.name}.json`);
         fs.writeFileSync(tablePath,JSON.stringify(table,null,2));
     });
+
+    /*
+     * writes schema as {outputDir}.json
+     */
+    let schema = {
+        name: schemaName,
+        tables: tables.map(table => {
+            return {"$ref":`${schemaName}/${table.name}.json`};
+        })
+    }
+    let schemaPath = outputDir+'.json';
+    fs.writeFileSync(schemaPath,JSON.stringify(schema,null,2));
+
     await database.close();
 }
 

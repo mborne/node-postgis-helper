@@ -52,6 +52,7 @@ module.exports = {
     },
     "definitions": {
         "Column": require('./Column'),
-        "ForeignKey": require('./ForeignKey')
+        "ForeignKey": require('./ForeignKey'),
+        "ParentRef": require('./ParentRef')
     }
 };

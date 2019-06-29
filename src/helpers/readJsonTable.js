@@ -1,20 +1,21 @@
 const Table = require('../models/Table');
 
-const fs = require('fs');
-const path = require('path');
+const readJson   = require('./readJson');
+const resolveRef = require('./resolveRef');
 
 /**
  * Load model from JSON path
- * @param {string} url
+ *
+ * @param {string} tablePath
  */
 async function readJsonTable(tablePath){
-    let config = JSON.parse( fs.readFileSync(tablePath,'utf-8') );
+    let config = await readJson(tablePath);
 
     let table = new Table(config);
 
     /* resolve parent (handle inheritance) */
     if ( config.parent ){
-        let parentPath = path.resolve( path.dirname(tablePath), config.parent );
+        let parentPath = resolveRef(config.parent,tablePath);
         let parentTable = await readJsonTable(parentPath);
         // inherits parent primaryKey
         if ( parentTable.primaryKey ){
@@ -22,6 +23,9 @@ async function readJsonTable(tablePath){
         }
         // inherits parent columns
         table.columns = parentTable.columns.concat(table.columns);
+
+        // remove parent reference
+        delete table.parent;
     }
     return table;
 }
