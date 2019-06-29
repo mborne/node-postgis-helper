@@ -1,10 +1,12 @@
+const Model = require('./Model');
+
 const Column = require('./Column');
 const ForeignKey = require('./ForeignKey');
 
 /**
  * Model describing an SQL table
  */
-class Table {
+class Table extends Model {
 
     /**
      * @param {object} config
@@ -16,18 +18,7 @@ class Table {
      * @param {ForeignKey[]} config.foreignKeys
      */
     constructor(config){
-        /**
-         * @property {string} table name
-         */
-        this.name  = config.name ? config.name : null ;
-        /**
-         * @property {string} display name
-         */
-        this.title = config.title ? config.title : this.name ;
-        /**
-         * @property {string} content description
-         */
-        this.description = config.description ? config.description : null ;
+        super(config);
 
         /**
          * @property {string[]} columns composing primary key
@@ -40,12 +31,16 @@ class Table {
         /**
          * @property {ForeignKey[]} foreign keys
          */
-        this.foreignKeys = config.foreignKeys ? config.foreignKeys : [] ;
+        this.foreignKeys = config.foreignKeys ?
+            this.bindForeignKeys(config.foreignKeys)
+            :
+            []
+        ;
 
         /**
          * @property {Column[]} columns
          */
-        this.columns = config.columns ? config.columns : [] ;
+        this.columns = config.columns ? this.bindColumns( config.columns ): [] ;
 
         /* allows additional properties */
         Object.keys(config).forEach(function(propertyName){
@@ -54,6 +49,39 @@ class Table {
             }
         }.bind(this));
     }
+
+
+    /**
+     * Force type for columns
+     *
+     * @private
+     *
+     * @param {object[]} columns
+     * @returns {Column[]}
+     */
+    bindColumns(columns){
+        return columns.map(column => {
+            if ( column instanceof Column ){
+                return column;
+            }else{
+                return new Column(column);
+            }
+        });
+    }
+
+    /**
+     * @param {object[]} foreignKeys
+     */
+    bindForeignKeys(foreignKeys){
+        return foreignKeys.map(foreignKey => {
+            if ( foreignKey instanceof ForeignKey ){
+                return foreignKey;
+            }else{
+                return new ForeignKey(foreignKey);
+            }
+        });
+    }
+
 
 }
 

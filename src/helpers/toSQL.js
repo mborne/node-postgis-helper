@@ -9,6 +9,16 @@ function getSqlCreateTable(table,schemaName){
     let sqlColumns = [];
     table.columns.forEach(function(column){
         let sqlColumn = `    ${column.name} ${column.type}`;
+        if ( column.unique ){
+            sqlColumn += ' UNIQUE';
+        }
+        if ( column.required ){
+            sqlColumn += ' NOT NULL';
+        }
+        if ( column.reference !== null ){
+            let ref = column.reference;
+            sqlColumn += ` REFERENCES ${ref.schema}.${ref.name}(${ref.column})`;
+        }
         sqlColumns.push(sqlColumn);
     });
     if ( table.primaryKey.length !== 0 ){
@@ -38,7 +48,7 @@ function toSQL(schema){
         parts.push(getSqlCreateTable(table,schemaName));
         parts.push('');
     });
-    return parts.join("\n");
+    return parts.join("\r\n");
 }
 
 module.exports = toSQL;

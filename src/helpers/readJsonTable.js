@@ -1,5 +1,4 @@
 const Table  = require('../models/Table');
-const Column = require('../models/Column');
 
 const readJson   = require('./readJson');
 const resolveRef = require('./resolveRef');
@@ -11,11 +10,6 @@ const resolveRef = require('./resolveRef');
  */
 async function readJsonTable(tablePath){
     let config = await readJson(tablePath);
-
-    /* decode columns */
-    config.columns = config.columns.map(columnConfig => {
-        return new Column(columnConfig);
-    })
 
     let table = new Table(config);
 

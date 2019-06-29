@@ -1,54 +1,58 @@
 {
   "name": "user_ext",
-  "title": "user_ext",
-  "description": null,
+  "primaryKey": [
+    "id"
+  ],
+  "foreignKeys": [],
   "columns": [
     {
       "name": "id",
       "title": "Identifier",
-      "description": null,
       "type": "serial",
-      "required": false
+      "required": false,
+      "unique": false,
+      "reference": null
     },
     {
       "name": "username",
       "title": "Username",
-      "description": null,
       "type": "text",
-      "required": false
+      "required": false,
+      "unique": false,
+      "reference": null
     },
     {
       "name": "birthdate",
       "title": "Birthdate",
-      "description": null,
       "type": "date",
-      "required": false
+      "required": false,
+      "unique": false,
+      "reference": null
     },
     {
       "name": "is_admin",
       "title": "Administrator?",
-      "description": null,
       "type": "boolean",
       "required": false,
+      "unique": false,
+      "reference": null,
       "default": false
     },
     {
       "name": "location",
       "title": "Location",
-      "description": null,
       "type": "geometry(Point,4326)",
-      "required": false
+      "required": false,
+      "unique": false,
+      "reference": null
     },
     {
       "name": "extra",
       "title": "Extra",
-      "description": null,
       "type": "text",
-      "required": false
+      "required": false,
+      "unique": false,
+      "reference": null
     }
-  ],
-  "primaryKey": [
-    "id"
-  ],
-  "foreignKeys": []
+  ]
 }

@@ -1,7 +1,5 @@
 {
   "name": "building_owner",
-  "title": "building_owner",
-  "description": null,
   "primaryKey": [
     "id"
   ],
@@ -38,32 +36,23 @@
   "columns": [
     {
       "name": "id",
-      "title": "id",
-      "description": null,
       "type": "integer",
       "required": true
     },
     {
       "name": "building_id",
-      "title": "building_id",
-      "description": null,
       "type": "uuid",
       "required": false
     },
     {
       "name": "building_version",
-      "title": "building_version",
-      "description": null,
       "type": "integer",
       "required": false
     },
     {
       "name": "owner_id",
-      "title": "owner_id",
-      "description": null,
       "type": "integer",
       "required": false
     }
-  ],
-  "is_view": false
+  ]
 }

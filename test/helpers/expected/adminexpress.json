@@ -1,0 +1,232 @@
+{
+  "name": "adminexpress",
+  "tables": [
+    {
+      "name": "region",
+      "title": "Région",
+      "primaryKey": [
+        "id"
+      ],
+      "foreignKeys": [],
+      "columns": [
+        {
+          "name": "id",
+          "type": "text",
+          "required": false,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "nom_reg",
+          "type": "text",
+          "required": false,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "nom_reg_m",
+          "type": "text",
+          "required": false,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "insee_reg",
+          "type": "text",
+          "required": false,
+          "unique": true,
+          "reference": null
+        },
+        {
+          "name": "chf_reg",
+          "type": "text",
+          "required": false,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "geom",
+          "type": "geometry(MultiPolygon,4326)",
+          "required": true,
+          "unique": false,
+          "reference": null
+        }
+      ]
+    },
+    {
+      "name": "departement",
+      "title": "Département",
+      "primaryKey": [
+        "id"
+      ],
+      "foreignKeys": [],
+      "columns": [
+        {
+          "name": "id",
+          "type": "text",
+          "required": false,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "nom_dep",
+          "type": "text",
+          "required": false,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "nom_dep_m",
+          "type": "text",
+          "required": false,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "insee_dep",
+          "type": "text",
+          "required": false,
+          "unique": true,
+          "reference": null
+        },
+        {
+          "name": "insee_reg",
+          "type": "text",
+          "required": false,
+          "unique": false,
+          "reference": {
+            "schema": "adminexpress",
+            "name": "region",
+            "column": "insee_reg"
+          }
+        },
+        {
+          "name": "chf_dep",
+          "type": "text",
+          "required": false,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "geom",
+          "type": "geometry(MultiPolygon,4326)",
+          "required": true,
+          "unique": false,
+          "reference": null
+        }
+      ]
+    },
+    {
+      "name": "commune",
+      "title": "Commune",
+      "primaryKey": [
+        "id"
+      ],
+      "foreignKeys": [],
+      "columns": [
+        {
+          "name": "id",
+          "type": "text",
+          "required": false,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "type",
+          "type": "text",
+          "required": false,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "nom_com",
+          "type": "text",
+          "required": false,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "nom_com_m",
+          "type": "text",
+          "required": false,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "insee_com",
+          "type": "text",
+          "required": false,
+          "unique": true,
+          "reference": null
+        },
+        {
+          "name": "statut",
+          "type": "text",
+          "required": false,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "population",
+          "type": "numeric(8,0)",
+          "required": false,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "insee_arr",
+          "type": "text",
+          "required": false,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "nom_dep",
+          "type": "text",
+          "required": false,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "insee_dep",
+          "type": "text",
+          "required": false,
+          "unique": false,
+          "reference": {
+            "schema": "adminexpress",
+            "name": "departement",
+            "column": "insee_dep"
+          }
+        },
+        {
+          "name": "nom_reg",
+          "type": "text",
+          "required": false,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "insee_reg",
+          "type": "text",
+          "required": false,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "code_epci",
+          "type": "text",
+          "required": false,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "geom",
+          "type": "geometry(MultiPolygon,4326)",
+          "required": true,
+          "unique": false,
+          "reference": null
+        }
+      ]
+    }
+  ]
+}

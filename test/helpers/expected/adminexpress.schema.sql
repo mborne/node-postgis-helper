@@ -1,82 +1,43 @@
 CREATE SCHEMA IF NOT EXISTS adminexpress;
 
--- region
+-- Région
 CREATE TABLE adminexpress.region (
-    gid integer,
     id text,
     nom_reg text,
     nom_reg_m text,
-    insee_reg text,
+    insee_reg text UNIQUE,
     chf_reg text,
-    geom geometry(MultiPolygon,4326),
-    PRIMARY KEY (gid)
+    geom geometry(MultiPolygon,4326) NOT NULL,
+    PRIMARY KEY (id)
 );
 
--- departement
+-- Département
 CREATE TABLE adminexpress.departement (
-    gid integer,
     id text,
     nom_dep text,
     nom_dep_m text,
-    insee_dep text,
-    insee_reg text,
+    insee_dep text UNIQUE,
+    insee_reg text REFERENCES adminexpress.region(insee_reg),
     chf_dep text,
-    geom geometry(MultiPolygon,4326),
-    PRIMARY KEY (gid)
+    geom geometry(MultiPolygon,4326) NOT NULL,
+    PRIMARY KEY (id)
 );
 
--- epci
-CREATE TABLE adminexpress.epci (
-    gid integer,
-    id text,
-    code_epci text,
-    nom_epci text,
-    type_epci text,
-    geom geometry(MultiPolygon,4326),
-    PRIMARY KEY (gid)
-);
-
--- arrondissement_departemental
-CREATE TABLE adminexpress.arrondissement_departemental (
-    gid integer,
-    id text,
-    nom_arr text,
-    nom_arr_m text,
-    insee_arr text,
-    insee_dep text,
-    insee_reg text,
-    chf_arr text,
-    geom geometry(MultiPolygon,4326),
-    PRIMARY KEY (gid)
-);
-
--- commune
+-- Commune
 CREATE TABLE adminexpress.commune (
-    gid integer,
     id text,
     type text,
     nom_com text,
     nom_com_m text,
-    insee_com text,
+    insee_com text UNIQUE,
     statut text,
     population numeric(8,0),
     insee_arr text,
     nom_dep text,
-    insee_dep text,
+    insee_dep text REFERENCES adminexpress.departement(insee_dep),
     nom_reg text,
     insee_reg text,
     code_epci text,
-    geom geometry(MultiPolygon,4326),
-    PRIMARY KEY (gid)
-);
-
--- chef_lieu
-CREATE TABLE adminexpress.chef_lieu (
-    gid integer,
-    id text,
-    nom_chf text,
-    statut text,
-    insee_com text,
-    geom geometry(MultiPoint,4326),
-    PRIMARY KEY (gid)
+    geom geometry(MultiPolygon,4326) NOT NULL,
+    PRIMARY KEY (id)
 );

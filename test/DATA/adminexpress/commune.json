@@ -1,117 +1,68 @@
 {
   "name": "commune",
-  "title": "commune",
-  "description": null,
+  "title": "Commune",
   "primaryKey": [
-    "gid"
+    "id"
   ],
-  "foreignKeys": [],
   "columns": [
     {
-      "name": "gid",
-      "title": "gid",
-      "description": null,
-      "type": "integer",
-      "required": true
-    },
-    {
       "name": "id",
-      "title": "id",
-      "description": null,
-      "type": "text",
-      "required": false
+      "type": "text"
     },
     {
       "name": "type",
-      "title": "type",
-      "description": null,
-      "type": "text",
-      "required": false
+      "type": "text"
     },
     {
       "name": "nom_com",
-      "title": "nom_com",
-      "description": null,
-      "type": "text",
-      "required": false
+      "type": "text"
     },
     {
       "name": "nom_com_m",
-      "title": "nom_com_m",
-      "description": null,
-      "type": "text",
-      "required": false
+      "type": "text"
     },
     {
       "name": "insee_com",
-      "title": "insee_com",
-      "description": null,
       "type": "text",
-      "required": false
+      "unique": true
     },
     {
       "name": "statut",
-      "title": "statut",
-      "description": null,
-      "type": "text",
-      "required": false
+      "type": "text"
     },
     {
       "name": "population",
-      "title": "population",
-      "description": null,
-      "type": "numeric(8,0)",
-      "required": false
+      "type": "numeric(8,0)"
     },
     {
       "name": "insee_arr",
-      "title": "insee_arr",
-      "description": null,
-      "type": "text",
-      "required": false
+      "type": "text"
     },
     {
       "name": "nom_dep",
-      "title": "nom_dep",
-      "description": null,
-      "type": "text",
-      "required": false
+      "type": "text"
     },
     {
       "name": "insee_dep",
-      "title": "insee_dep",
-      "description": null,
       "type": "text",
-      "required": false
+      "reference": "adminexpress.departement(insee_dep)"
     },
     {
       "name": "nom_reg",
-      "title": "nom_reg",
-      "description": null,
-      "type": "text",
-      "required": false
+      "type": "text"
     },
     {
       "name": "insee_reg",
-      "title": "insee_reg",
-      "description": null,
-      "type": "text",
-      "required": false
+      "type": "text"
     },
     {
       "name": "code_epci",
-      "title": "code_epci",
-      "description": null,
-      "type": "text",
-      "required": false
+      "type": "text"
     },
     {
       "name": "geom",
-      "title": "geom",
-      "description": null,
       "type": "geometry(MultiPolygon,4326)",
-      "required": false
+      "required": true
     }
-  ],
-  "is_view": false
+  ]
 }

@@ -17,4 +17,14 @@ describe("helpers.readJsonSchema(url)...", async function () {
         expect(result).to.deep.equals(expected);
     });
 
+    it("should provide an expected result for 'adminexpress.json'", async function () {
+        let result = await helpers.readJsonSchema(
+            path.resolve(__dirname,'../DATA/adminexpress.json')
+        );
+        let expectedPath = __dirname+'/expected/adminexpress.json';
+        //fs.writeFileSync(expectedPath,JSON.stringify(result,null,2));
+        let expected = require(expectedPath);
+        expect(result).to.deep.equals(expected);
+    });
+
 })

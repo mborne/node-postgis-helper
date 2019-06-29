@@ -1,68 +1,44 @@
 {
   "name": "departement",
-  "title": "departement",
-  "description": null,
+  "title": "Département",
   "primaryKey": [
-    "gid"
+    "id"
   ],
-  "foreignKeys": [],
   "columns": [
     {
-      "name": "gid",
-      "title": "gid",
-      "description": null,
-      "type": "integer",
-      "required": true
-    },
-    {
       "name": "id",
-      "title": "id",
-      "description": null,
-      "type": "text",
-      "required": false
+      "type": "text"
     },
     {
       "name": "nom_dep",
-      "title": "nom_dep",
-      "description": null,
-      "type": "text",
-      "required": false
+      "type": "text"
     },
     {
       "name": "nom_dep_m",
-      "title": "nom_dep_m",
-      "description": null,
-      "type": "text",
-      "required": false
+      "type": "text"
     },
     {
       "name": "insee_dep",
-      "title": "insee_dep",
-      "description": null,
       "type": "text",
-      "required": false
+      "unique": true
     },
     {
       "name": "insee_reg",
-      "title": "insee_reg",
-      "description": null,
       "type": "text",
-      "required": false
+      "reference": {
+        "schema": "adminexpress",
+        "name": "region",
+        "column": "insee_reg"
+      }
     },
     {
       "name": "chf_dep",
-      "title": "chf_dep",
-      "description": null,
-      "type": "text",
-      "required": false
+      "type": "text"
     },
     {
       "name": "geom",
-      "title": "geom",
-      "description": null,
       "type": "geometry(MultiPolygon,4326)",
-      "required": false
+      "required": true
     }
-  ],
-  "is_view": false
+  ]
 }

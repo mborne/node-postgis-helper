@@ -15,10 +15,10 @@ describe("Column...", function () {
             //console.log(JSON.stringify(column, null, 2));
             expect(column).to.deep.equals({
                 "name": "my_column",
-                "title": "my_column",
-                "description": null,
                 "type": "text",
-                "required": false
+                "reference": null,
+                "required": false,
+                "unique": false
             });
         });
 

@@ -1,61 +1,35 @@
 {
   "name": "region",
-  "title": "region",
-  "description": null,
+  "title": "Région",
   "primaryKey": [
-    "gid"
+    "id"
   ],
-  "foreignKeys": [],
   "columns": [
     {
-      "name": "gid",
-      "title": "gid",
-      "description": null,
-      "type": "integer",
-      "required": true
-    },
-    {
       "name": "id",
-      "title": "id",
-      "description": null,
-      "type": "text",
-      "required": false
+      "type": "text"
     },
     {
       "name": "nom_reg",
-      "title": "nom_reg",
-      "description": null,
-      "type": "text",
-      "required": false
+      "type": "text"
     },
     {
       "name": "nom_reg_m",
-      "title": "nom_reg_m",
-      "description": null,
-      "type": "text",
-      "required": false
+      "type": "text"
     },
     {
       "name": "insee_reg",
-      "title": "insee_reg",
-      "description": null,
       "type": "text",
-      "required": false
+      "unique": true
     },
     {
       "name": "chf_reg",
-      "title": "chf_reg",
-      "description": null,
-      "type": "text",
-      "required": false
+      "type": "text"
     },
     {
       "name": "geom",
-      "title": "geom",
-      "description": null,
       "type": "geometry(MultiPolygon,4326)",
-      "required": false
+      "required": true
     }
-  ],
-  "is_view": false
+  ]
 }

@@ -14,8 +14,6 @@ describe("Table...", function () {
             //console.log(JSON.stringify(table, null, 2));
             expect(table).to.deep.equals({
                 "name": "my_table",
-                "title": "my_table",
-                "description": null,
                 "columns": [],
                 "primaryKey": [],
                 "foreignKeys": []
