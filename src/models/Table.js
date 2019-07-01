@@ -2,6 +2,7 @@ const Model = require('./Model');
 
 const Column = require('./Column');
 const ForeignKey = require('./ForeignKey');
+const parseForeignKey = require('../internal/parseForeignKey');
 
 /**
  * Model describing an SQL table
@@ -76,6 +77,8 @@ class Table extends Model {
         return foreignKeys.map(foreignKey => {
             if ( foreignKey instanceof ForeignKey ){
                 return foreignKey;
+            }else if ( typeof foreignKey === 'string' ){
+                return parseForeignKey(foreignKey);
             }else{
                 return new ForeignKey(foreignKey);
             }

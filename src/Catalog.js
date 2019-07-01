@@ -140,7 +140,7 @@ class Catalog {
 
         /* parse foreign keys */
         return rows.map(row => {
-            return parseForeignKey(row)
+            return parseForeignKey(row.definition);
         });
     }
 }

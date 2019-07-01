@@ -174,7 +174,6 @@
       ],
       "foreignKeys": [
         {
-          "name": "building_owner_building_id_fkey",
           "columns": [
             "building_id",
             "building_version"
@@ -189,7 +188,6 @@
           }
         },
         {
-          "name": "building_owner_owner_id_fkey",
           "columns": [
             "owner_id"
           ],

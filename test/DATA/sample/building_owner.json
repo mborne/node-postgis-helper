@@ -4,34 +4,8 @@
     "id"
   ],
   "foreignKeys": [
-    {
-      "name": "building_owner_building_id_fkey",
-      "columns": [
-        "building_id",
-        "building_version"
-      ],
-      "target": {
-        "schema": "sample",
-        "name": "building_h",
-        "columns": [
-          "id",
-          "version"
-        ]
-      }
-    },
-    {
-      "name": "building_owner_owner_id_fkey",
-      "columns": [
-        "owner_id"
-      ],
-      "target": {
-        "schema": "sample",
-        "name": "user",
-        "columns": [
-          "id"
-        ]
-      }
-    }
+    "(building_id,building_version) REFERENCES sample.building_h(id,version)",
+    "(owner_id) REFERENCES sample.user(id)"
   ],
   "columns": [
     {

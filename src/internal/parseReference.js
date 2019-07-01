@@ -1,19 +1,20 @@
 const ReferenceTarget = require('../models/ReferenceTarget');
 
-
 /**
- * Parse reference definition
+ * Parse ReferenceTarget definition
  * @param {string} config
+ * @returns {ReferenceTarget}
  */
 function parseReference(config){
-    config = config.replace(')','');
-    let parts = config.split('(');
-
-    let tableParts = parts[0].split('.');
+    let regexp = /^(\w+)\.(\w+)\((\w+)\)$/g;
+    let found = regexp.exec(config);
+    if ( found == null ){
+        throw new Error(`invalid reference '${config}'`);
+    }
     return new ReferenceTarget({
-        schema: tableParts[0],
-        name: tableParts[1],
-        column: parts[1]
+        schema: found[1],
+        name: found[2],
+        column: found[3]
     });
 }
 

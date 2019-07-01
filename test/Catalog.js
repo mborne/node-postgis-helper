@@ -73,7 +73,6 @@ describe("Catalog...", async function () {
             //console.log(JSON.stringify(foreignKeys, null, 2));
             const expected = [
                 {
-                    "name": "building_h_owner_id_fkey",
                     "columns": ["owner_id"],
                     "target": {
                         "schema": "sample",

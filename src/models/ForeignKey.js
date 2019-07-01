@@ -6,14 +6,10 @@ const ForeignKeyTarget = require('./ForeignKeyTarget');
 class ForeignKey {
     /**
      * @param {object} config
-     * @param {string} [config.name=null]
-     * @param {string[]} config.columns source columns
+     * @param {string[]} [config.columns] source columns
+     * @param {ForeignKeyTarget} [config.target] target columns
      */
     constructor(config){
-        /**
-         * @property {string} foreign key name
-         */
-        this.name = config.name ? config.name : null;
         /**
          * @property {string[]} source columns
          */
