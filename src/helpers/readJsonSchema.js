@@ -1,7 +1,6 @@
 const Schema = require('../models/Schema');
 
 const readJson = require('./readJson');
-const resolveRef = require('./resolveRef');
 const readJsonTable = require('./readJsonTable');
 
 /**

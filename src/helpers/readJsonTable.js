@@ -1,7 +1,6 @@
 const Table  = require('../models/Table');
 
 const readJson   = require('./readJson');
-const resolveRef = require('./resolveRef');
 
 /**
  * Load model from JSON path
