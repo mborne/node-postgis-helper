@@ -5,7 +5,7 @@ const ForeignKey = require('./ForeignKey');
 const parseForeignKey = require('../internal/parseForeignKey');
 
 /**
- * Model describing an SQL table
+ * Model describing a Table
  */
 class Table extends Model {
 
@@ -45,12 +45,34 @@ class Table extends Model {
 
         /* allows additional properties */
         Object.keys(config).forEach(function(propertyName){
+            if ( propertyName === 'parent' ){
+                return;
+            }
             if ( typeof this[propertyName] === 'undefined' ){
                 this[propertyName] = config[propertyName];
             }
         }.bind(this));
     }
 
+    /**
+     * Create table from config object
+     * @param {object} config
+     * @returns {Table}
+     */
+    static createTable(config){
+        let table = new Table(config);
+        /* resolve inheritence recursively */
+        if ( config.parent ){
+            let parentTable = Table.createTable(config.parent);
+            // inherits parent primaryKey
+            if ( parentTable.primaryKey ){
+                table.primaryKey = parentTable.primaryKey;
+            }
+            // inherits parent columns
+            table.columns = parentTable.columns.concat(table.columns);
+        }
+        return table;
+    }
 
     /**
      * Force type for columns

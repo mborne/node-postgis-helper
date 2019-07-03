@@ -3,29 +3,15 @@ const Table  = require('../models/Table');
 const readJson   = require('./readJson');
 
 /**
- * Load model from JSON path
+ * Load Table from URL or Path
  *
- * @param {string} tablePath
+ * @param {string} config
  */
-async function readJsonTable(tablePath){
-    let config = await readJson(tablePath);
-
-    let table = new Table(config);
-
-    /* resolve parent (handle inheritance) */
-    if ( config.parent ){
-        let parentPath = resolveRef(config.parent,tablePath);
-        let parentTable = await readJsonTable(parentPath);
-        // inherits parent primaryKey
-        if ( parentTable.primaryKey ){
-            table.primaryKey = parentTable.primaryKey;
-        }
-        // inherits parent columns
-        table.columns = parentTable.columns.concat(table.columns);
-
-        // remove parent reference
-        delete table.parent;
+async function readJsonTable(config){
+    if ( typeof config === 'string' ){
+        config = await readJson(config);
     }
+    let table = Table.createTable(config);
     return table;
 }
 
