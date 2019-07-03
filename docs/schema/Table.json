@@ -93,11 +93,6 @@
       "title": "Foreign key",
       "description": "Describe a reference to another table",
       "properties": {
-        "name": {
-          "type": "string",
-          "title": "Name",
-          "description": "The name of the constraints"
-        },
         "columns": {
           "type": "array",
           "title": "Column",

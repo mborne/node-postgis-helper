@@ -35,7 +35,9 @@ function getSqlCreateTable(table,schemaName){
 /**
  * Get SQL statements to CREATE TABLE according to
  * model
+ *
  * @param {Schema} schema
+ * @returns {string}
  */
 function toSQL(schema){
     let schemaName = schema.name;

@@ -1,5 +1,3 @@
-const fs = require('fs');
-const _ = require('lodash');
 const $RefParser = require("json-schema-ref-parser");
 
 /**
@@ -8,7 +6,7 @@ const $RefParser = require("json-schema-ref-parser");
  * @param {string} path
  * @returns {any}
  */
-async function readJson(path,options){
+async function readJson(path){
     let result = await $RefParser.dereference(path);
     return result;
 }
