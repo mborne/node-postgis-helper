@@ -1,21 +1,17 @@
 const Schema = require('../models/Schema');
 
 const readJson = require('./readJson');
-const resolveRef = require('./resolveRef');
-const readJsonTable = require('./readJsonTable');
 
 /**
- * Read JSON Schema
- * @param {string} schemaPath
+ * Read Schema from URL or Path
+ * @param {string} config
+ * @returns {Schema}
  */
-async function readJsonSchema(schemaPath){
-    let config = await readJson(schemaPath);
-    for ( var i in config.tables ){
-        let tableRef = config.tables[i];
-        let tableConfigPath = await resolveRef(tableRef,schemaPath);
-        config.tables[i] = await readJsonTable(tableConfigPath);
+async function readJsonSchema(config){
+    if ( typeof config === 'string' ){
+        config = await readJson(config);
     }
-    return new Schema(config);
+    return Schema.createSchema(config);
 }
 
 module.exports = readJsonSchema;
