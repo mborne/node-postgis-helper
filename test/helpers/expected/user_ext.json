@@ -1,0 +1,58 @@
+{
+  "name": "user_ext",
+  "primaryKey": [
+    "id"
+  ],
+  "foreignKeys": [],
+  "columns": [
+    {
+      "name": "id",
+      "title": "Identifier",
+      "type": "serial",
+      "required": false,
+      "unique": false,
+      "reference": null
+    },
+    {
+      "name": "username",
+      "title": "Username",
+      "type": "text",
+      "required": false,
+      "unique": false,
+      "reference": null
+    },
+    {
+      "name": "birthdate",
+      "title": "Birthdate",
+      "type": "date",
+      "required": false,
+      "unique": false,
+      "reference": null
+    },
+    {
+      "name": "is_admin",
+      "title": "Administrator?",
+      "type": "boolean",
+      "required": false,
+      "unique": false,
+      "reference": null,
+      "default": false
+    },
+    {
+      "name": "location",
+      "title": "Location",
+      "type": "geometry(Point,4326)",
+      "required": false,
+      "unique": false,
+      "reference": null
+    },
+    {
+      "name": "extra",
+      "title": "Extra",
+      "type": "text",
+      "required": false,
+      "unique": false,
+      "reference": null
+    }
+  ]
+}

@@ -1,0 +1,235 @@
+{
+  "name": "sample",
+  "tables": [
+    {
+      "name": "user",
+      "primaryKey": [
+        "id"
+      ],
+      "foreignKeys": [],
+      "columns": [
+        {
+          "name": "id",
+          "title": "Identifier",
+          "type": "serial",
+          "required": false,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "username",
+          "title": "Username",
+          "type": "text",
+          "required": false,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "birthdate",
+          "title": "Birthdate",
+          "type": "date",
+          "required": false,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "is_admin",
+          "title": "Administrator?",
+          "type": "boolean",
+          "required": false,
+          "unique": false,
+          "reference": null,
+          "default": false
+        },
+        {
+          "name": "location",
+          "title": "Location",
+          "type": "geometry(Point,4326)",
+          "required": false,
+          "unique": false,
+          "reference": null
+        }
+      ]
+    },
+    {
+      "name": "user_ext",
+      "primaryKey": [
+        "id"
+      ],
+      "foreignKeys": [],
+      "columns": [
+        {
+          "name": "id",
+          "title": "Identifier",
+          "type": "serial",
+          "required": false,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "username",
+          "title": "Username",
+          "type": "text",
+          "required": false,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "birthdate",
+          "title": "Birthdate",
+          "type": "date",
+          "required": false,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "is_admin",
+          "title": "Administrator?",
+          "type": "boolean",
+          "required": false,
+          "unique": false,
+          "reference": null,
+          "default": false
+        },
+        {
+          "name": "location",
+          "title": "Location",
+          "type": "geometry(Point,4326)",
+          "required": false,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "extra",
+          "title": "Extra",
+          "type": "text",
+          "required": false,
+          "unique": false,
+          "reference": null
+        }
+      ]
+    },
+    {
+      "name": "building_h",
+      "title": "building_h",
+      "primaryKey": [
+        "id",
+        "version"
+      ],
+      "foreignKeys": [],
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "required": true,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "version",
+          "type": "integer",
+          "required": true,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "deleted",
+          "type": "boolean",
+          "required": false,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "required": true,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "owner_id",
+          "type": "integer",
+          "required": false,
+          "unique": false,
+          "reference": {
+            "schema": "sample",
+            "name": "user",
+            "column": "id"
+          }
+        },
+        {
+          "name": "geometry",
+          "type": "geometry(Polygon,4326)",
+          "required": false,
+          "unique": false,
+          "reference": null
+        }
+      ],
+      "description": null
+    },
+    {
+      "name": "building_owner",
+      "primaryKey": [
+        "id"
+      ],
+      "foreignKeys": [
+        {
+          "columns": [
+            "building_id",
+            "building_version"
+          ],
+          "target": {
+            "schema": "sample",
+            "name": "building_h",
+            "columns": [
+              "id",
+              "version"
+            ]
+          }
+        },
+        {
+          "columns": [
+            "owner_id"
+          ],
+          "target": {
+            "schema": "sample",
+            "name": "user",
+            "columns": [
+              "id"
+            ]
+          }
+        }
+      ],
+      "columns": [
+        {
+          "name": "id",
+          "type": "integer",
+          "required": true,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "building_id",
+          "type": "uuid",
+          "required": false,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "building_version",
+          "type": "integer",
+          "required": false,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "owner_id",
+          "type": "integer",
+          "required": false,
+          "unique": false,
+          "reference": null
+        }
+      ]
+    }
+  ]
+}

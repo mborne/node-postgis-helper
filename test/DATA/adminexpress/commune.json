@@ -1,0 +1,68 @@
+{
+  "name": "commune",
+  "title": "Commune",
+  "primaryKey": [
+    "id"
+  ],
+  "columns": [
+    {
+      "name": "id",
+      "type": "text"
+    },
+    {
+      "name": "type",
+      "type": "text"
+    },
+    {
+      "name": "nom_com",
+      "type": "text"
+    },
+    {
+      "name": "nom_com_m",
+      "type": "text"
+    },
+    {
+      "name": "insee_com",
+      "type": "text",
+      "unique": true
+    },
+    {
+      "name": "statut",
+      "type": "text"
+    },
+    {
+      "name": "population",
+      "type": "numeric(8,0)"
+    },
+    {
+      "name": "insee_arr",
+      "type": "text"
+    },
+    {
+      "name": "nom_dep",
+      "type": "text"
+    },
+    {
+      "name": "insee_dep",
+      "type": "text",
+      "reference": "adminexpress.departement(insee_dep)"
+    },
+    {
+      "name": "nom_reg",
+      "type": "text"
+    },
+    {
+      "name": "insee_reg",
+      "type": "text"
+    },
+    {
+      "name": "code_epci",
+      "type": "text"
+    },
+    {
+      "name": "geom",
+      "type": "geometry(MultiPolygon,4326)",
+      "required": true
+    }
+  ]
+}

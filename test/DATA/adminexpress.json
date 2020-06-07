@@ -1,0 +1,14 @@
+{
+  "name": "adminexpress",
+  "tables": [
+    {
+      "$ref": "adminexpress/region.json"
+    },
+    {
+      "$ref": "adminexpress/departement.json"
+    },
+    {
+      "$ref": "adminexpress/commune.json"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "name": "building_h",
+  "title": "building_h",
+  "description": null,
+  "primaryKey": [
+    "id",
+    "version"
+  ],
+  "columns": [
+    {
+      "name": "id",
+      "type": "uuid",
+      "required": true
+    },
+    {
+      "name": "version",
+      "type": "integer",
+      "required": true
+    },
+    {
+      "name": "deleted",
+      "type": "boolean",
+      "required": false
+    },
+    {
+      "name": "name",
+      "type": "text",
+      "required": true
+    },
+    {
+      "name": "owner_id",
+      "type": "integer",
+      "required": false,
+      "reference": {
+        "schema": "sample",
+        "name": "user",
+        "column": "id"
+      }
+    },
+    {
+      "name": "geometry",
+      "type": "geometry(Polygon,4326)",
+      "required": false
+    }
+  ]
+}

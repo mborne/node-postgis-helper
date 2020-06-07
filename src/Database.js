@@ -1,9 +1,12 @@
 const debug = require('debug')('postgis-helper');
 
-const { Client } = require('pg');
-const pool = require('./pool');
+const { Client, QueryConfig } = require('pg');
 
+const pool = require('./internal/pool');
 const psql = require('./internal/psql');
+
+const Catalog = require('./Catalog');
+const Table = require('./models/Table');
 
 /**
  * Helper to query database
@@ -20,6 +23,11 @@ class Database {
          * @property {Client}
          */
         this.client = client;
+        /**
+         * @property {Catalog}
+         * @private
+         */
+        this.catalog = new Catalog(this);
     }
 
     /**
@@ -34,13 +42,6 @@ class Database {
     }
 
     /**
-     * @returns {Client}
-     */
-    getClient(){
-        return this.client;
-    }
-
-    /**
      * Close database connexion
      */
     async close(){
@@ -49,13 +50,28 @@ class Database {
     }
 
     /**
+     * @returns {Client}
+     */
+    getClient(){
+        return this.client;
+    }
+
+    /**
+     * @returns {Catalog}
+     */
+    getCatalog(){
+        return this.catalog;
+    }
+
+    /**
      * Execute query
-     * @param {string} sql
-     * @param {any[]} values
+     * @param {string|QueryConfig} query
+     * @param {any[]} [values]
      * @return {Object[]}
      */
-    async query(sql, values) {
-        const res = await this.client.query(sql, values)
+    async query(query, values) {
+        //debug(query);
+        const res = await this.client.query(query, values)
         return res.rows;
     }
 
@@ -65,27 +81,33 @@ class Database {
      * @returns {boolean}
      */
     async hasSchema(schemaName){
-        let schemas = await this.getSchemaNames();
-        return schemas.indexOf(schemaName) >= 0;
+        return this.catalog.hasSchema(schemaName);
     }
 
     /**
      * List schemas
+     * @returns {string[]}
      */
     async getSchemaNames() {
-        const sql = `select schema_name from information_schema.schemata WHERE schema_name NOT LIKE 'pg_%' AND schema_name != 'information_schema'`;
-        const rows = await this.query(sql);
-        return rows.map(function (row) { return row.schema_name });
+        return this.catalog.getSchemaNames();
     }
 
     /**
      * List table in a given schema
-     * @param {String} schemaName
+     * @param {string} schemaName
+     * @returns {string[]}
      */
     async getTableNames(schemaName) {
-        const sql = `SELECT * FROM pg_catalog.pg_tables WHERE schemaname = $1`;
-        const rows = await this.query(sql, [schemaName]);
-        return rows.map(function (row) { return row.tablename });
+        return this.catalog.getTableNames(schemaName);
+    }
+
+    /**
+     * Get tables with primaryKey, columns and constraints
+     * @param {string} schemaName
+     * @return {Table[]}
+     */
+    async getSchema(schemaName){
+        return this.catalog.getSchema(schemaName);
     }
 
     /**

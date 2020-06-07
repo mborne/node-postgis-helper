@@ -1,0 +1,32 @@
+{
+  "name": "building_owner",
+  "primaryKey": [
+    "id"
+  ],
+  "foreignKeys": [
+    "(building_id,building_version) REFERENCES sample.building_h(id,version)",
+    "(owner_id) REFERENCES sample.user(id)"
+  ],
+  "columns": [
+    {
+      "name": "id",
+      "type": "integer",
+      "required": true
+    },
+    {
+      "name": "building_id",
+      "type": "uuid",
+      "required": false
+    },
+    {
+      "name": "building_version",
+      "type": "integer",
+      "required": false
+    },
+    {
+      "name": "owner_id",
+      "type": "integer",
+      "required": false
+    }
+  ]
+}

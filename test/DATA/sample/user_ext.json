@@ -1,0 +1,13 @@
+{
+    "name": "user_ext",
+    "parent": {
+        "$ref": "user.json"
+    },
+    "columns": [
+        {
+            "name": "extra",
+            "type": "text",
+            "title": "Extra"
+        }
+    ]
+}

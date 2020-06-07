@@ -1,0 +1,44 @@
+{
+  "name": "departement",
+  "title": "Département",
+  "primaryKey": [
+    "id"
+  ],
+  "columns": [
+    {
+      "name": "id",
+      "type": "text"
+    },
+    {
+      "name": "nom_dep",
+      "type": "text"
+    },
+    {
+      "name": "nom_dep_m",
+      "type": "text"
+    },
+    {
+      "name": "insee_dep",
+      "type": "text",
+      "unique": true
+    },
+    {
+      "name": "insee_reg",
+      "type": "text",
+      "reference": {
+        "schema": "adminexpress",
+        "name": "region",
+        "column": "insee_reg"
+      }
+    },
+    {
+      "name": "chf_dep",
+      "type": "text"
+    },
+    {
+      "name": "geom",
+      "type": "geometry(MultiPolygon,4326)",
+      "required": true
+    }
+  ]
+}

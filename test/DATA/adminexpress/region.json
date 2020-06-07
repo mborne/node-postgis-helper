@@ -1,0 +1,35 @@
+{
+  "name": "region",
+  "title": "Région",
+  "primaryKey": [
+    "id"
+  ],
+  "columns": [
+    {
+      "name": "id",
+      "type": "text"
+    },
+    {
+      "name": "nom_reg",
+      "type": "text"
+    },
+    {
+      "name": "nom_reg_m",
+      "type": "text"
+    },
+    {
+      "name": "insee_reg",
+      "type": "text",
+      "unique": true
+    },
+    {
+      "name": "chf_reg",
+      "type": "text"
+    },
+    {
+      "name": "geom",
+      "type": "geometry(MultiPolygon,4326)",
+      "required": true
+    }
+  ]
+}

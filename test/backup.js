@@ -6,6 +6,7 @@ const Database = require('../src/Database');
 const backup = require('../src/backup');
 
 describe("Test backup...", async function () {
+    this.timeout(5000);
 
     it("should generate backup files", async function () {
         /* restore a backup */

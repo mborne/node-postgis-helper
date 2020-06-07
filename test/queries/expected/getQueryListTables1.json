@@ -1,0 +1,4 @@
+{
+    "text": "select table_schema as schema, table_name as table, ( table_type = 'VIEW' ) as is_view from information_schema.tables WHERE table_schema not like 'pg_%' and table_schema != 'information_schema' ORDER BY table_schema,table_name",
+    "values": []
+}

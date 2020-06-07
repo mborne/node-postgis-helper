@@ -1,0 +1,181 @@
+{
+  "name": "sample",
+  "tables": [
+    {
+      "name": "building_h",
+      "primaryKey": [
+        "id",
+        "version"
+      ],
+      "foreignKeys": [
+        {
+          "columns": [
+            "owner_id"
+          ],
+          "target": {
+            "schema": "sample",
+            "name": "user",
+            "columns": [
+              "id"
+            ]
+          }
+        }
+      ],
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "required": true,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "version",
+          "type": "integer",
+          "required": true,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "deleted",
+          "type": "boolean",
+          "required": false,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "required": true,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "owner_id",
+          "type": "integer",
+          "required": false,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "geometry",
+          "type": "geometry(Polygon,4326)",
+          "required": false,
+          "unique": false,
+          "reference": null
+        }
+      ],
+      "is_view": false
+    },
+    {
+      "name": "building_owner",
+      "primaryKey": [
+        "id"
+      ],
+      "foreignKeys": [
+        {
+          "columns": [
+            "building_id",
+            "building_version"
+          ],
+          "target": {
+            "schema": "sample",
+            "name": "building_h",
+            "columns": [
+              "id",
+              "version"
+            ]
+          }
+        },
+        {
+          "columns": [
+            "owner_id"
+          ],
+          "target": {
+            "schema": "sample",
+            "name": "user",
+            "columns": [
+              "id"
+            ]
+          }
+        }
+      ],
+      "columns": [
+        {
+          "name": "id",
+          "type": "integer",
+          "required": true,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "building_id",
+          "type": "uuid",
+          "required": false,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "building_version",
+          "type": "integer",
+          "required": false,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "owner_id",
+          "type": "integer",
+          "required": false,
+          "unique": false,
+          "reference": null
+        }
+      ],
+      "is_view": false
+    },
+    {
+      "name": "user",
+      "primaryKey": [
+        "id"
+      ],
+      "foreignKeys": [],
+      "columns": [
+        {
+          "name": "id",
+          "type": "integer",
+          "required": true,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "username",
+          "type": "text",
+          "required": false,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "birthdate",
+          "type": "date",
+          "required": false,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "is_admin",
+          "type": "boolean",
+          "required": false,
+          "unique": false,
+          "reference": null
+        },
+        {
+          "name": "location",
+          "type": "geometry(Point,4326)",
+          "required": false,
+          "unique": false,
+          "reference": null
+        }
+      ],
+      "is_view": false
+    }
+  ]
+}

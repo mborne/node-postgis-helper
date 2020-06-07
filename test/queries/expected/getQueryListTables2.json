@@ -1,0 +1,6 @@
+{
+    "text": "select table_schema as schema, table_name as table, ( table_type = 'VIEW' ) as is_view from information_schema.tables WHERE table_schema LIKE $1 ORDER BY table_schema,table_name",
+    "values": [
+        "sample"
+    ]
+}

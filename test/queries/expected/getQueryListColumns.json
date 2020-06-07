@@ -1,0 +1,7 @@
+{
+    "text": "SELECT\n    a.attname as name,\n    format_type(a.atttypid, a.atttypmod) AS type,\n    (a.attnotnull = false) as is_nullable\nfrom pg_attribute a\n    where a.attrelid = ($1 ||'.' || $2)::regclass\n    and a.attnum > 0\n    and not a.attisdropped",
+    "values": [
+        "the_schema",
+        "the_table"
+    ]
+}
