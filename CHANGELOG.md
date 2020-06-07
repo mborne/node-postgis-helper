@@ -35,17 +35,19 @@ Add hability to describe and retreive main table properties and generate model d
 Add converter to doc and other schema :
 
 * [x] `helper.toMarkdown(table)` : convert to markdown
+
+**IDEAS BELLOW : ORDER MAY CHANGE**
+
+## 0.3 - Hability to create SQL schema from models
+
+Add other converters :
+
 * [ ] `helper.toJsonSchema(table)` : converts to JSON object definition (swagger)
   * [ ] `helper.toJsonType(column.type)` (relying on parseType, finding mapping for [PostgreSQL type](https://www.postgresql.org/docs/11/datatype.html#DATATYPE-TABLE))
 
 * [ ] `helper.toGeoJsonSchema(table,options)` : convert to JSON object definition for GeoJSON rendering (`object` to `Feature` conversion)
   * [ ] Converts `toJsonSchema` to GeoJSON
   * [ ] Support `options.geometryName` (with default behavior = GeoServer, first one or last one, don't remember)
-
-
-**IDEAS BELLOW : ORDER MAY CHANGE**
-
-## 0.3 - Hability to create SQL schema from models
 
 Add helper to manage PostgreSQL schema :
 

@@ -16,6 +16,7 @@ SELECT
 from pg_attribute a
     where a.attrelid = ($1 ||'.' || $2)::regclass
     and a.attnum > 0
+    and not a.attisdropped
 `;
     return {
         text: sql.trim(),
