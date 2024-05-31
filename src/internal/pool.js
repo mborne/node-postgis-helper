@@ -1,5 +1,12 @@
 const { Pool } = require('pg');
 
-const pool = new Pool();
+const poolConfig = {
+    ssl: {
+        rejectUnauthorized: false,
+    }
+};
+
+
+const pool = new Pool(poolConfig);
 
 module.exports = pool;
