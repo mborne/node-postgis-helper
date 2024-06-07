@@ -44,7 +44,7 @@ jobs:
     - name: Run tests
       run: npm test
       env:
-        PGHOST: postgres
+        PGHOST: localhost
         PGPORT: 5432
         PGUSER: postgres
         PGPASSWORD: ChangeIt
