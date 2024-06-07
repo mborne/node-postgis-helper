@@ -47,12 +47,15 @@ jobs:
         sudo apt-get install --yes --no-install-recommends postgresql-client
 
     - name: Run tests
-      run: npm test
+      run: |
+        createdb gis
+        npm test
       env:
         PGHOST: localhost
         PGPORT: 5432
         PGUSER: postgres
         PGPASSWORD: ChangeIt
+        PGDATABASE: gis
 
     # - name: Publish coverage to coveralls.io
     #   run: npm run coveralls
