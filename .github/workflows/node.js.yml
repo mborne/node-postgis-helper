@@ -9,11 +9,11 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     services:
       postgres:
-        image: postgres
+        image: postgres:14
         env:
           POSTGRES_PASSWORD: ChangeIt
         # Set health checks to wait until postgres has started
@@ -40,6 +40,11 @@ jobs:
 
     - name: Install dependencies
       run: npm install
+
+    - name: Install PostgreSQL client
+      run: |
+        apt-get update
+        apt-get install --yes --no-install-recommends postgresql-client
 
     - name: Run tests
       run: npm test

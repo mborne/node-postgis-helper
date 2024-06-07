@@ -11,8 +11,11 @@ describe("Test backup...", async function () {
     it("should generate backup files", async function () {
         /* restore a backup */
         var database = await Database.createDatabase();
-        await database.batch(__dirname+'/DATA/sample.sql');
-        await database.close();
+        try {
+            await database.batch(__dirname+'/DATA/sample.sql');
+        }finally{
+            await database.close();
+        }
 
         /* prepare output dir */
         shell.rm('-rf','/tmp/test-backup');
