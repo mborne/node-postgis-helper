@@ -13,7 +13,9 @@ jobs:
 
     services:
       postgres:
-        image: postgres:14
+        # note that ubuntu-22.04 come with postgresql-client-14
+        # and that test relies on PostGIS extension
+        image: postgis/postgis:14-3.4
         env:
           POSTGRES_PASSWORD: ChangeIt
         # Set health checks to wait until postgres has started
