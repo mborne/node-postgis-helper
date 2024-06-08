@@ -17,7 +17,7 @@ describe("Catalog...", async function () {
 
     before(async function () {
         database = await Database.createDatabase();
-        database.batch(__dirname + '/DATA/sample.sql');
+        await database.batch(__dirname + '/DATA/sample.sql');
         catalog = database.getCatalog();
     });
 

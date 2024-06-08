@@ -2,7 +2,7 @@ const shell = require('shelljs');
 
 const _ = require('lodash');
 
-const debug = require('debug')('psql');
+const debug = require('debug')('postgis-helper');
 
 /**
  * Run psql on a given file
@@ -12,44 +12,42 @@ const debug = require('debug')('psql');
  * @param {Boolean} [options.singleTransation=true]
  * @return {Promise}
  */
-var psql = function(options){
-    var options = _.defaults(options,{
+async function psql(options) {
+    var options = _.defaults(options, {
         quiet: true,
         singleTransation: true
     });
 
-    return new Promise(function(resolve,reject){
-        if (!shell.which('psql')) {
-            reject({
-                'status': 'error',
-                'message': 'psql not found'
-            });
-        }
+    return new Promise(function (resolve, reject) {
         var commandParts = [];
         commandParts.push('psql -v ON_ERROR_STOP=1');
-        if ( options.quiet ){
+        if (options.quiet) {
             commandParts.push('--quiet');
         }
-        if ( options.singleTransation ){
+        if (options.singleTransation) {
             commandParts.push('--single-transaction');
         }
-        commandParts.push('-f '+options.inputPath);
+        commandParts.push('-f ' + options.inputPath);
 
         var command = commandParts.join(' ');
         debug(command);
-        if (shell.exec(command,{silent: true}).code !== 0) {
-            reject({
-                'status': 'error',
-                'message': 'Fail to import '+options.inputPath,
-                'command': command
-            });
-        }else{
-            resolve({
-                'status': 'success',
-                'message': 'File imported : '+options.inputPath,
-                'command': command
-            });
-        }
+        shell.exec(command, { silent: true }, function (code, stdout, stderr) {
+            debug(stdout);
+            if (code != 0) {
+                debug(stderr);
+                reject({
+                    'status': 'error',
+                    'message': 'Fail to import ' + options.inputPath,
+                    'command': command
+                });
+            } else {
+                resolve({
+                    'status': 'success',
+                    'message': 'File imported : ' + options.inputPath,
+                    'command': command
+                });
+            }
+        });
     });
 };
 
